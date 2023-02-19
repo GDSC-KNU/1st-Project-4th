@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Nav />
-        <div className=" w-full max-w-[1300px] flex flex-col items-center py-12 mx-auto">
+        <div className=" w-full max-w-[950px] flex flex-col items-center py-12 mx-auto">
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/board" element={<Board />}></Route>
