@@ -1,10 +1,43 @@
 export default function BoardDetail() {
+  const post_data = [
+    {
+      title: 'title1',
+      post_id: 1,
+      content: '안녕하세요, 알고리즘 질문드립니다',
+      created_date: '2012-10-12',
+      modified_date: '2012-10-12',
+      view_count: '12',
+      user: { id: 'id- 1', level: '1', problem_count: '10' },
+      comment: [{ id: 1 }, { id: 1 }, { id: 1 }],
+    },
+    {
+      title: 'title2',
+      post_id: 2,
+      content: '안녕하세요, 알고리즘 질문드립니다',
+      created_date: '2012-10-12',
+      modified_date: '2012-10-12',
+      view_count: '12',
+      user: { id: 'id- 1', level: '1', problem_count: '10' },
+      comment: [{ id: 1 }, { id: 1 }, { id: 1 }],
+    },
+    {
+      title: 'title3',
+      post_id: 3,
+      content: '안녕하세요, 알고리즘 질문드립니다',
+      created_date: '2012-10-12',
+      modified_date: '2012-10-12',
+      view_count: '12',
+      user: { id: 'id- 1', level: '1', problem_count: '10' },
+      comment: [{ id: 1 }, { id: 1 }, { id: 1 }],
+    },
+  ];
+
   return (
     <div>
       <span className="inline-flex my-3 ml-4 items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
         질문
       </span>
-      <div className="flex mb-3 px-4 cursor-pointer pb-3  border-b items-center space-x-3">
+      {/* <div className="flex mb-3 px-4 cursor-pointer pb-3  border-b items-center space-x-3">
         <div className="w-10 h-10 rounded-full bg-slate-300" />
         <div>
           <p className="text-sm font-medium text-gray-700">Steve Jebs</p>
@@ -12,30 +45,19 @@ export default function BoardDetail() {
             View profile &rarr;
           </p>
         </div>
-      </div>
+      </div> */}
       <div>
         <div className="mt-2 px-4 text-gray-700">
           <span className="text-orange-500 font-medium">Q.</span> 알고리즘
           질문드립니다.
         </div>
+        <div className="mt-2 px-4 text-gray-700 text-sm min-h-[100px]">
+          알고리즘 질문드립니다. 알고리즘 문제 내용은 ~~입니다. 알고리즘
+          질문드립니다. 알고리즘 문제 내용은 ~~입니다. 알고리즘 질문드립니다.
+          알고리즘 문제 내용은 ~~입니다. 알고리즘 질문드립니다. 알고리즘 문제
+          내용은 ~~입니다.
+        </div>
         <div className="flex px-4 space-x-5 mt-3 text-gray-700 py-2.5 border-t border-b-[2px]  w-full">
-          {/* <span className="flex space-x-2 items-center text-sm">
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            <span>궁금해요 1</span>
-          </span> */}
           <span className="flex space-x-2 items-center text-sm">
             <svg
               className="w-4 h-4"
@@ -58,12 +80,14 @@ export default function BoardDetail() {
       <div className="px-4 my-5 space-y-5">
         <div className="flex items-start space-x-3">
           <div className="w-8 h-8 bg-slate-200 rounded-full" />
-          <div>
-            <span className="text-sm block font-medium text-gray-700">
-              Steve Jebs
-            </span>
-            <span className="text-xs text-gray-500 block ">2시간 전</span>
-            <p className="text-gray-700 mt-2">
+          <div className=" w-full">
+            <div className=" flex justify-between">
+              <span className="text-sm block font-medium text-gray-700">
+                Steve Jebs
+              </span>
+              <span className="text-xs text-gray-500 block ">2시간 전</span>
+            </div>
+            <p className="text-gray-700 mt-2 text-sm">
               The best mandu restaurant is the one next to my house.
             </p>
           </div>
