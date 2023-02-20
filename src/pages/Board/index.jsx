@@ -7,7 +7,7 @@ export default function Board() {
     data: post_data,
     error,
     isLoading,
-  } = useSWR('https://msw.com/api/posts');
+  } = useSWR('https://msw.com/api/board');
 
   return (
     <div className="  min-w-[300px] w-full pt-6 ">
