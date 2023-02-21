@@ -26,6 +26,7 @@ export default function BoardDetail() {
   } = useForm({ mode: 'onChange' });
 
   const onValid = async data => {
+    resetField('comment');
     if (loading) return;
     await createComment({ ...data });
     mutate(`https://msw.com/api/board/${id}`);
@@ -76,7 +77,7 @@ export default function BoardDetail() {
             <div className=" w-full">
               <div className=" flex justify-between">
                 <span className="text-sm block font-medium text-gray-700">
-                  {post_data?.user?.id}
+                  {item?.user?.id}
                 </span>
                 <span className="text-xs text-gray-500 block ">
                   {item?.created_date}

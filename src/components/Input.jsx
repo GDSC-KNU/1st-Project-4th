@@ -17,7 +17,7 @@ const Input = ({ label, name, kind, register, type, required }) => {
             required={required}
             {...register}
             type={type}
-            placeholder="한줄평을 입력해주세요. 과도한 비방, 욕설, 도배는 차단됩니다."
+            placeholder="코멘트를 작성해주세요"
             className="appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-400 focus:border-blue-400"
           />
         </div>
