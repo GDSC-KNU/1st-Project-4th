@@ -1,10 +1,11 @@
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import { useParams } from 'react-router-dom';
 import Input from '../../components/Input';
 import { useForm } from 'react-hook-form';
 import useMutation from '../../libs/useMutation';
 
 export default function BoardDetail() {
+  const { mutate } = useSWRConfig();
   let { id } = useParams();
   const { data: post_data, isLoading } = useSWR(
     `https://msw.com/api/board/${id}`,
@@ -26,7 +27,8 @@ export default function BoardDetail() {
 
   const onValid = async data => {
     if (loading) return;
-    createComment({ ...data });
+    await createComment({ ...data });
+    mutate(`https://msw.com/api/board/${id}`);
     return;
   };
 

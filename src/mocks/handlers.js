@@ -76,7 +76,7 @@ export const handlers = [
     let {comment} = req.body
     let new_comment = { id: comments.length + 1, content : comment, user : { name : "익명"}}
     comments.push(new_comment)
-    return res(ctx.status(201));
+    return res(ctx.json(new_comment));
   })
 
 ];
