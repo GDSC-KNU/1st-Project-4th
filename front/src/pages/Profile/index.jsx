@@ -6,12 +6,13 @@ import Pagination from '../../components/Pagination';
 
 export default function Profile() {
 
-  const params = useParams();
-  console.log(params);
+  // const params = useParams();
+  // console.log(params);
 
 
   const [selectedValue, setSelectedValue] = useState('1');
   const [data, setData] = useState(null);
+  const [problem, setProblem] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -26,6 +27,19 @@ export default function Profile() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    async function fetchProblem() {
+      try {
+        const response = await fetch('https://msw.com/api/problem');
+        const jsonData = await response.json();
+        setProblem(jsonData); // update the state with the received data
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchProblem();
+  }, []);
+
   const items = [
     { value: '3', label: '3' },
     { value: '5', label: '5' },
@@ -35,7 +49,7 @@ export default function Profile() {
 
   const filteredItems = items.filter((item) => item.value !== selectedValue);
 
-  let numCols = 5;
+  let numCols = 0;
   if (selectedValue === '3') {
     numCols = 3;
   } else if (selectedValue === '5') {
@@ -52,16 +66,28 @@ export default function Profile() {
     cols.push(
       <div className="flex justify-center">
       
-      <li
-        key={i}
-        className={`w-full px-4 py-2 border-b border-gray-200 ${i === 0 ? '' : 'rounded-t-none'} transition-colors duration-300 hover:bg-gray-100`}
+      {problem ? (
+    problem
+      .map((pro) => (
+        <ul className="w-full px-4 py-2 border-b border-gray-200  transition-colors duration-300 hover:bg-gray-100">
+        <li
+        key={pro.id}
+        className="text-gray-900 mb-2"
       >
-        {`문제 ${i + 1}`}
+          {pro.name}
+          {pro.url}
       </li>
+      </ul>
+          
+      ))
+  ) : (
+    <p>Loading data...</p>
+  )}
       
       </div>
     );
   }
+  
 
   return(
 
@@ -76,7 +102,7 @@ export default function Profile() {
 
             {data ? (
               data
-                .filter((item) => item.serviceUser_id === 1) // Filter the array to only show items with serviceUser_id of 1
+                .filter((item) => item.serviceUser_id === 2) // Filter the array to only show items with serviceUser_id of 1
                 .map((item) => (
                   <div className="m-8 w-1/2 border-gray-200 rounded-lg shadow">
                     <div className="flex items-center space-x-4">
