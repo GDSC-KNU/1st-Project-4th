@@ -14,7 +14,10 @@ export default function Profile() {
   const [data, setData] = useState(null);
   const [problem, setProblem] = useState(null);
 
+  
+
   useEffect(() => {
+
     async function fetchData() {
       try {
         const response = await fetch('https://msw.com/api/serviceUser');
@@ -61,34 +64,42 @@ export default function Profile() {
     numCols = 10;
   }
 
-  const uniqueProblems = new Set();
+  const uniquePairs = [];
+if (problem) {
+  problem.forEach((pro) => {
+    const pair = { name: pro.name, url: pro.url };
+    if (!uniquePairs.some((p) => p.name === pair.name && p.url === pair.url)) {
+      uniquePairs.push(pair);
+    }
+  });
+}
+
+const rows = [];
+for (let i = 0; i < uniquePairs.length; i++) {
+  const { name, url } = uniquePairs[i];
+  const row = (
+    <li
+      key={i}
+      className={`w-full px-4 py-2 border-b border-gray-200 transition-colors duration-300 hover:bg-gray-100`}
+    >
+      {`${name}: ${url}`}
+    </li>
+  );
+  rows.push(row);
+}
+
 const cols = [];
 for (let i = 0; i < numCols; i++) {
-  cols.push(
+  const start = i * Math.ceil(rows.length / numCols);
+  const end = Math.min((i + 1) * Math.ceil(rows.length / numCols), rows.length);
+  const col = (
     <div className="flex justify-center">
-      <ul className="w-full px-4 py-2 border-b border-gray-200  transition-colors duration-300 hover:bg-gray-100">
-        {problem ? (
-          problem.map((pro) => {
-            if (uniqueProblems.has(pro.name) || uniqueProblems.has(pro.url)) {
-              return null;
-            }
-            uniqueProblems.add(pro.name);
-            uniqueProblems.add(pro.url);
-            return (
-              <li
-                key={pro.id}
-                className="text-gray-900 dark:text-white"
-              >
-                <a href={pro.url}>{pro.name}</a>
-              </li>
-            );
-          })
-        ) : (
-          <p>Loading data...</p>
-        )}
+      <ul className="w-full text-sm font-medium mt-5 text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+        {rows.slice(start, end)}
       </ul>
     </div>
   );
+  cols.push(col);
 }
   
 
@@ -135,6 +146,7 @@ for (let i = 0; i < numCols; i++) {
                     value={item.value}
                     checked={selectedValue === item.value}
                     onChange={(event) => setSelectedValue(event.target.value)}
+                    
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                 />
                 <label key={item.value} htmlFor="list-radio-license" className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -174,6 +186,7 @@ for (let i = 0; i < numCols; i++) {
                 <div className="flex justify-center">
                   <div className="m-8 items-center">
                     <Pagination />
+                  
                   </div>
                 </div>
                
