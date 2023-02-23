@@ -11,6 +11,20 @@ export default function Profile() {
 
 
   const [selectedValue, setSelectedValue] = useState('1');
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('https://msw.com/api/serviceUser');
+        const jsonData = await response.json();
+        setData(jsonData); // update the state with the received data
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
 
   const items = [
     { value: '3', label: '3' },
@@ -60,16 +74,20 @@ export default function Profile() {
 
             <div className='w-1/2'>
 
-                <div className="m-8 w-1/2 border-gray-200 rounded-lg shadow ">
+            {data ? (data.map((item) => (
+              <div className="m-8 w-1/2 border-gray-200 rounded-lg shadow ">
                 <div className="flex items-center space-x-4">
-                    
-                    <div className="font-medium dark:text-white">
-                        <div>Jese Leos</div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">Joined in August 2014</div>
-                    </div>
-
+                
+                  <div key={item.id}className="font-medium dark:text-white">
+                    <div>{item.name}</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">{item.launchdate}</div>
+                  </div>
                 </div>
-                </div>
+              </div>
+            )
+            )) : (
+              <p>Loading data...</p>
+            )}
 
             
                 <div className="flex-auto ml-8">
@@ -138,7 +156,7 @@ export default function Profile() {
        
     
         </a>
-    
+   
     </>
   ) 
 }

@@ -32,44 +32,53 @@ const posts = [  {
 }]
 
 const serviceUser = [  {
+  serviceUser_id : 1,
   name: "John Smith",
-  dateOfBirth: "1990-01-01",
+  launchdate: "2023-02-01",
   },
   {
+  serviceUser_id : 2,
   name: "Hyun",
-  dateOfBirth: "1181-01-01",
+  launchdate: "2010-05-02",
   },
   {
+  serviceUser_id : 3,
   name: "John Sff",
-  dateOfBirth: "1990-01-01",
+  launchdate: "2021-01-12",
   }]
 
   const problem = [  {
+      problem_id : 1,
       name: "피보나치 함수",
       url: "https://www.acmicpc.net/problem/1003"
   },
   {
+    problem_id : 2,
     name: "습격자 초라기",
-  url: "https://www.acmicpc.net/problem/1006"
+    url: "https://www.acmicpc.net/problem/1006"
   },
   {
-  name: "작업 공정",
-  url: "https://www.acmicpc.net/problem/2221"
-  },
-]
+    problem_id : 3,
+    name: "작업 공정",
+    url: "https://www.acmicpc.net/problem/2221"
+  }]
 
 const comments = [{ id: 1, content : "알고리즘 질문드립니다.", user : { id: 1 , name : "익명"}, created_date : "2022-12-12" }, { id: 2, content : "댓글내용2 입니다", user : { id: 2 , name : "익명"}, created_date : "2022-12-12" }, { id: 3, content : "댓글내용3 입니다", user : {  id: 3 , name : "익명"}, created_date : "2022-12-12" }]
 
 export const handlers = [
 
-
-  rest.get("https://msw.com/api/serviceUser/:id", async (req, res, ctx) => {
-      const { id : serviceUser_id } = req.params;
+  rest.get("https://msw.com/api/serviceUser", async (req, res, ctx) => {
       return res(
-      ctx.json(serviceUser)
-      );
-      }),
+          ctx.json(serviceUser)
+        );
+    }),
 
+    rest.get("https://msw.com/api/problem", async (req, res, ctx) => {
+      return res(
+          ctx.json(problem)
+        );
+    }),
+    
   //board
   rest.get("https://msw.com/api/board", async (req, res, ctx) => {
     return res(
