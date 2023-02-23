@@ -1,9 +1,11 @@
 import { useParams } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePickerButton from './datepickerbutton';
 import Pagination from '../../components/Pagination';
 
+
 export default function Profile() {
+
   const params = useParams();
   console.log(params);
 
@@ -101,9 +103,10 @@ export default function Profile() {
                 </div>
 
                 </div>
-                <a href="#" className="w-3/4 m-10 bg-white border border-gray-200 rounded-lg shadow">
+
+                 {/* <a href="#" className="w-3/4 m-10 bg-white border border-gray-200 rounded-lg shadow">
                 나의 실력은 어느정도?
-                </a>
+                </a>  */}
                 
                 </div>
 
