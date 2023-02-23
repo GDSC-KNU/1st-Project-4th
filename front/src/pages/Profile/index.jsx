@@ -74,18 +74,20 @@ export default function Profile() {
 
             <div className='w-1/2'>
 
-            {data ? (data.map((item) => (
-              <div className="m-8 w-1/2 border-gray-200 rounded-lg shadow ">
-                <div className="flex items-center space-x-4">
-                
-                  <div key={item.id}className="font-medium dark:text-white">
-                    <div>{item.name}</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">{item.launchdate}</div>
+            {data ? (
+              data
+                .filter((item) => item.serviceUser_id === 1) // Filter the array to only show items with serviceUser_id of 1
+                .map((item) => (
+                  <div className="m-8 w-1/2 border-gray-200 rounded-lg shadow">
+                    <div className="flex items-center space-x-4">
+                      <div key={item.id} className="font-medium dark:text-white">
+                        <div>{item.name}</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">{item.launchdate}</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            )
-            )) : (
+                ))
+            ) : (
               <p>Loading data...</p>
             )}
 
