@@ -61,32 +61,35 @@ export default function Profile() {
     numCols = 10;
   }
 
-  const cols = [];
-  for (let i = 0; i < numCols; i++) {
-    cols.push(
-      <div className="flex justify-center">
-      
-      {problem ? (
-    problem
-      .map((pro) => (
-        <ul className="w-full px-4 py-2 border-b border-gray-200  transition-colors duration-300 hover:bg-gray-100">
-        <li
-        key={pro.id}
-        className="text-gray-900 mb-2"
-      >
-          {pro.name}
-          {pro.url}
-      </li>
+  const uniqueProblems = new Set();
+const cols = [];
+for (let i = 0; i < numCols; i++) {
+  cols.push(
+    <div className="flex justify-center">
+      <ul className="w-full px-4 py-2 border-b border-gray-200  transition-colors duration-300 hover:bg-gray-100">
+        {problem ? (
+          problem.map((pro) => {
+            if (uniqueProblems.has(pro.name) || uniqueProblems.has(pro.url)) {
+              return null;
+            }
+            uniqueProblems.add(pro.name);
+            uniqueProblems.add(pro.url);
+            return (
+              <li
+                key={pro.id}
+                className="text-gray-900 dark:text-white"
+              >
+                <a href={pro.url}>{pro.name}</a>
+              </li>
+            );
+          })
+        ) : (
+          <p>Loading data...</p>
+        )}
       </ul>
-          
-      ))
-  ) : (
-    <p>Loading data...</p>
-  )}
-      
-      </div>
-    );
-  }
+    </div>
+  );
+}
   
 
   return(
