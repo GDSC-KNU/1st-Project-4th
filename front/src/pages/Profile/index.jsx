@@ -83,14 +83,19 @@ const rows = uniquePairs.slice(0, numCols).map((pair, i) => (
   </li>
 ));
 
-
-  const cols = (
+const cols = [];
+for (let i = 0; i < numCols; i++) {
+  const start = i * Math.ceil(rows.length / numCols);
+  const end = Math.min((i + 1) * Math.ceil(rows.length / numCols), rows.length);
+  const col = (
     <div className="flex justify-center">
-      <ul className="w-full text-sm font-medium mt-5 text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-        {rows}
+      <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+        {rows.slice(start, end)}
       </ul>
     </div>
   );
+  cols.push(col);
+}
   
 
 
