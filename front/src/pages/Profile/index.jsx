@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import DatePickerButton from './datepickerbutton';
 import Pagination from '../../components/Pagination';
-
+import Spo from './sss';
 
 export default function Profile() {
 
@@ -74,33 +74,26 @@ if (problem) {
   });
 }
 
-const rows = [];
-for (let i = 0; i < uniquePairs.length; i++) {
-  const { name, url } = uniquePairs[i];
-  const row = (
-    <li
-      key={i}
-      className={`w-full px-4 py-2 border-b border-gray-200 transition-colors duration-300 hover:bg-gray-100`}
-    >
-      {`${name}: ${url}`}
-    </li>
-  );
-  rows.push(row);
-}
+const rows = uniquePairs.slice(0, numCols).map((pair, i) => (
+  <li
+    key={i}
+    className={`w-full px-4 py-2 border-b border-gray-200 transition-colors duration-300 hover:bg-gray-100`}
+  >
+    {`${pair.name}: ${pair.url}`}
+  </li>
+));
 
-const cols = [];
-for (let i = 0; i < numCols; i++) {
-  const start = i * Math.ceil(rows.length / numCols);
-  const end = Math.min((i + 1) * Math.ceil(rows.length / numCols), rows.length);
-  const col = (
+
+  const cols = (
     <div className="flex justify-center">
       <ul className="w-full text-sm font-medium mt-5 text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-        {rows.slice(start, end)}
+        {rows}
       </ul>
     </div>
   );
-  cols.push(col);
-}
+  
+
+
   
 
   return(
@@ -186,6 +179,7 @@ for (let i = 0; i < numCols; i++) {
                 <div className="flex justify-center">
                   <div className="m-8 items-center">
                     <Pagination />
+                    <Spo />
                   
                   </div>
                 </div>

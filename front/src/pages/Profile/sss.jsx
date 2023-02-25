@@ -1,51 +1,75 @@
 import React, { useState } from 'react';
 
-const problems = [
-  { id: 1, description: 'Problem 1' },
-  { id: 2, description: 'Problem 2' },
-  { id: 3, description: 'Problem 3' },
-  { id: 4, description: 'Problem 4' },
-  { id: 5, description: 'Problem 5' },
-  { id: 6, description: 'Problem 6' },
-  { id: 7, description: 'Problem 7' },
-  { id: 8, description: 'Problem 8' },
-  { id: 9, description: 'Problem 9' },
-  { id: 10, description: 'Problem 10' },
-];
+const App = () => {
+  const [selectedValue, setSelectedValue] = useState(null);
+  const [problems, setProblems] = useState([]);
 
-function Spo() {
-  const [selectedProblems, setSelectedProblems] = useState([]);
+  const handleRadioChange = (event) => {
+    const selectedVal = event.target.value;
+    setSelectedValue(selectedVal);
 
-  const handleRadioChange = (e) => {
-    const numProblems = parseInt(e.target.value);
-    setSelectedProblems(problems.slice(0, numProblems));
+    let problemIds = [];
+    for (let i = 1; i <= selectedVal; i++) {
+      problemIds.push(i);
+    }
+    setProblems(problemIds);
   };
 
   return (
     <div>
-      <label>
-        <input type="radio" name="numProblems" value="3" onChange={handleRadioChange} />
-        3 problems
-      </label>
-      <label>
-        <input type="radio" name="numProblems" value="5" onChange={handleRadioChange} />
-        5 problems
-      </label>
-      <label>
-        <input type="radio" name="numProblems" value="7" onChange={handleRadioChange} />
-        7 problems
-      </label>
-      <label>
-        <input type="radio" name="numProblems" value="10" onChange={handleRadioChange} />
-        10 problems
-      </label>
-      <ul>
-        {selectedProblems.map(problem => (
-          <li key={problem.id}>{problem.description}</li>
+      <form>
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="3"
+              checked={selectedValue === '3'}
+              onChange={handleRadioChange}
+            />
+            3
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="5"
+              checked={selectedValue === '5'}
+              onChange={handleRadioChange}
+            />
+            5
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="7"
+              checked={selectedValue === '7'}
+              onChange={handleRadioChange}
+            />
+            7
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="10"
+              checked={selectedValue === '10'}
+              onChange={handleRadioChange}
+            />
+            10
+          </label>
+        </div>
+      </form>
+      <div>
+        {problems.map((problemId) => (
+          <div key={problemId}>Problem {problemId}</div>
         ))}
-      </ul>
+      </div>
     </div>
   );
-}
+};
 
-export default Spo;
+export default App;
