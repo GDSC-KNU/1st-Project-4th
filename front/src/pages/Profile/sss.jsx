@@ -1,75 +1,47 @@
 import React, { useState } from 'react';
+ // assuming the problem array is exported from handler.jsx
 
-const App = () => {
-  const [selectedValue, setSelectedValue] = useState(null);
-  const [problems, setProblems] = useState([]);
+const ExampleComponent = () => {
+  const [numOfDays, setNumOfDays] = useState(7);
 
-  const handleRadioChange = (event) => {
-    const selectedVal = event.target.value;
-    setSelectedValue(selectedVal);
-
-    let problemIds = [];
-    for (let i = 1; i <= selectedVal; i++) {
-      problemIds.push(i);
+  useEffect(() => {
+    async function fetchProblem() {
+      try {
+        const response = await fetch('https://msw.com/api/problem');
+        const jsonData = await response.json();
+        setProblem(jsonData); // update the state with the received data
+      } catch (error) {
+        console.error(error);
+      }
     }
-    setProblems(problemIds);
-  };
+    fetchProblem();
+  }, []);
+
+  // create an array of date strings for the selected number of days
+  const dates = [];
+  for (let i = 0; i < numOfDays; i++) {
+    const date = new Date();
+    date.setDate(date.getDate() + i);
+    dates.push(date.toISOString().substr(0, 10)); // convert date to yyyy-mm-dd format
+  }
 
   return (
     <div>
-      <form>
-        <div>
-          <label>
-            <input
-              type="radio"
-              value="3"
-              checked={selectedValue === '3'}
-              onChange={handleRadioChange}
-            />
-            3
-          </label>
+      {dates.map(date => (
+        <div key={date}>
+          <h2>{date}</h2>
+          {problem.map(p => {
+            const problemDate = new Date(p.created_date);
+            problemDate.setHours(0, 0, 0, 0); // set time to midnight to compare dates
+            if (problemDate.toISOString().substr(0, 10) === date) {
+              return <p key={p.problem_id}>{p.name}</p>;
+            }
+            return null;
+          })}
         </div>
-        <div>
-          <label>
-            <input
-              type="radio"
-              value="5"
-              checked={selectedValue === '5'}
-              onChange={handleRadioChange}
-            />
-            5
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              type="radio"
-              value="7"
-              checked={selectedValue === '7'}
-              onChange={handleRadioChange}
-            />
-            7
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              type="radio"
-              value="10"
-              checked={selectedValue === '10'}
-              onChange={handleRadioChange}
-            />
-            10
-          </label>
-        </div>
-      </form>
-      <div>
-        {problems.map((problemId) => (
-          <div key={problemId}>Problem {problemId}</div>
-        ))}
-      </div>
+      ))}
     </div>
   );
 };
 
-export default App;
+export default ExampleComponent;

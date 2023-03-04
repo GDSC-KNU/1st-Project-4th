@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import DatePickerButton from './datepickerbutton';
 import Pagination from '../../components/Pagination';
-import Spo from './sss';
+
 
 export default function Profile() {
 
@@ -79,7 +79,7 @@ const rows = uniquePairs.slice(0, numCols).map((pair, i) => (
     key={i}
     className={`w-full px-4 py-2 border-b border-gray-200 transition-colors duration-300 hover:bg-gray-100`}
   >
-    {`${pair.name}: ${pair.url}`}
+    <a href={pair.url} target="_blank" rel="noopener noreferrer">{pair.name}</a>
   </li>
 ));
 
@@ -130,8 +130,10 @@ for (let i = 0; i < numCols; i++) {
             )}
 
             
+
                 <div className="flex-auto ml-8">
                 <h3 className="w-1/2 mb-4 font-semibold text-gray-900 dark:text-white">하루에 받을 문제 수</h3>
+             
         <ul className="w-1/2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             {items.map((item) => (
             
@@ -158,7 +160,7 @@ for (let i = 0; i < numCols; i++) {
         </ul>
 
     
-                    
+      
                 </div>
 
                 </div>
@@ -184,7 +186,7 @@ for (let i = 0; i < numCols; i++) {
                 <div className="flex justify-center">
                   <div className="m-8 items-center">
                     <Pagination />
-                    <Spo />
+                    
                   
                   </div>
                 </div>
