@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const Pagination = ({
@@ -105,7 +104,11 @@ const Pagination = ({
   };
 
   return (
-    <nav aria-label="Page navigation example">
+    <nav
+      className="  flex justify-center
+    "
+      aria-label="Page navigation example"
+    >
       <ul className="inline-flex -space-x-px">
         <li>
           <a
