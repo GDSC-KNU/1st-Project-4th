@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
 import useSWR from 'swr';
+import { useState } from 'react';
 
 export default function Board() {
   const {
@@ -8,6 +9,11 @@ export default function Board() {
     error,
     isLoading,
   } = useSWR('https://msw.com/api/board');
+  const [currentpage, setCurrentPage] = useState(1);
+
+  const onPageChangeHandler = pageNumber => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div className="  min-w-[300px] w-full pt-6 ">
@@ -67,7 +73,13 @@ export default function Board() {
           )}
       </div>
       <div className=" pt-10">
-        <Pagination />
+        <Pagination
+          currentPage={currentpage}
+          itemsCountPerpage={10}
+          totalItemsCount={122}
+          pageRangeDisplayed={5}
+          onChange={onPageChangeHandler}
+        />
       </div>
     </div>
   );
