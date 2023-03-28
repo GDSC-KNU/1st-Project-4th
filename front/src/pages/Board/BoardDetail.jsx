@@ -37,8 +37,6 @@ export default function BoardDetail() {
     if (loading) return;
   };
 
-  console.log(post);
-
   return (
     <div className=" pt-2 w-full">
       <div>

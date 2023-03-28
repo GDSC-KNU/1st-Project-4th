@@ -11,7 +11,6 @@ const post = {
   comment_count: 3,
   status: null
 }
-// Array.from({length: 12}).map((item,i) => ({...post, id: i, title: `title${i}`}))
 
 const posts_response = {
   "success": true,
