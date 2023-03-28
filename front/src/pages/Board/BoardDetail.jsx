@@ -40,7 +40,7 @@ export default function BoardDetail() {
   console.log(post);
 
   return (
-    <div className=" pt-2">
+    <div className=" pt-2 w-full">
       <div>
         <div className="mt-2 px-4 text-gray-700">
           <span className=" inline-flex my-3 items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
