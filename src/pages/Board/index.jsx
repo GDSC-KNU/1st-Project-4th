@@ -57,7 +57,7 @@ export default function Board() {
                 </div>
                 <div className="  text-gray-700 text-sm">
                   <span className=" "></span>
-                  {description.slice(0, 50) + '...'}
+                  {description?.slice(0, 50) + '...'}
                 </div>
                 <div
                   className={
@@ -83,12 +83,12 @@ export default function Board() {
             <li className=" border-[1px] border-solid p-2">전체글</li>
             <li className=" border-[1px] border-solid p-2">인기글</li>
             <li className="">
-              <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm h-full focus:ring-blue-500 focus:border-blue-500 block w-fit dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              {/* <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm h-full focus:ring-blue-500 focus:border-blue-500 block w-fit dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected>정렬</option>
                 <option value="US">등록순</option>
                 <option value="CA">추천순</option>
                 <option value="FR">댓글갯수순</option>
-              </select>
+              </select> */}
             </li>
           </ol>
         </div>

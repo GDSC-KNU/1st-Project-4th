@@ -1,47 +1,26 @@
 import { rest } from "msw";
 
+const post = {
+  title: 'title1',
+  id: 1,
+  description: '안녕하세요, 알고리즘 질문드립니다',
+  created_date: '2012-10-12',
+  modified_date: '2012-10-12',
+  view_count: '12',
+  user: { id: 'id- 1', level: '1', problem_count: '10' },
+  comment_count: 3,
+  status: null
+}
+// Array.from({length: 12}).map((item,i) => ({...post, id: i, title: `title${i}`}))
+
 const posts_response = {
   "success": true,
   "code": 0,
   "msg": "성공하였습니다.",
-  "list" : [{
-    title: 'title1',
-    id: 1,
-    description: '안녕하세요, 알고리즘 질문드립니다',
-    created_date: '2012-10-12',
-    modified_date: '2012-10-12',
-    view_count: '12',
-    user: { id: 'id- 1', level: '1', problem_count: '10' },
-    comment_count: 3,
-    status: null
-  },
-  {
-    title: 'title2',
-    id: 2,
-    description: '안녕하세요, 알고리즘 질문드립니다',
-    created_date: '2012-10-12',
-    modified_date: '2012-10-12',
-    view_count: '12',
-    user: { id: 'id- 1', level: '1', problem_count: '10' },
-    comment_count: 3,
-    status: null
-  },
-  {
-    title: 'title2',
-    id: 3,
-    description: '안녕하세요, 알고리즘 질문드립니다',
-    created_date: '2012-10-12',
-    modified_date: '2012-10-12',
-    view_count: '12',
-    user: { id: 'id- 1', level: '1', problem_count: '10' },
-    comment_count: 3,
-    status: null
-  }]
+  "list" : Array.from({length: 8}).map((item,i) => ({...post, id: i, title: `title${i}`}))
 }
 
 const comments = [{ id: 1, content : "알고리즘 질문드립니다.", user : { id: 1 , name : "익명"}, created_date : "2022-12-12" }, { id: 2, content : "댓글내용2 입니다", user : { id: 2 , name : "익명"}, created_date : "2022-12-12" }, { id: 3, content : "댓글내용3 입니다", user : {  id: 3 , name : "익명"}, created_date : "2022-12-12" }]
-
-
 
 export const handlers = [
 
@@ -68,13 +47,7 @@ export const handlers = [
           "code": 0,
           "msg": "성공하였습니다.",
           "data": {
-            title: 'title1',
-            id: id,
-            description: '안녕하세요, 알고리즘 질문드립니다 알고리즘 질문드립니다.알고리즘 질문드립니다.알고리즘 질문드립니다.알고리즘 질문드립니다.알고리즘 질문드립니다.',
-            created_date: '2012-10-12',
-            modified_date: '2012-10-12',
-            view_count: '12',
-            user: { id: 'id- 1', level: '1', problem_count: '10' },
+            ...post,
             commentList: comments,
           }
         }
