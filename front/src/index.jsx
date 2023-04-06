@@ -24,8 +24,8 @@ if (import.meta.env.MODE === 'development') {
 } else {
   // Render the application in production without the MSW.
   root.render(
-    <StrictMode>
+    <React.StrictMode>
       <App />
-    </StrictMode>,
+    </React.StrictMode>,
   );
 }

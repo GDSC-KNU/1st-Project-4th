@@ -1,4 +1,7 @@
 import { useForm } from 'react-hook-form';
+import { GoogleLogin } from '@react-oauth/google';
+import { useGoogleOneTapLogin } from '@react-oauth/google';
+import { googleLogout } from '@react-oauth/google';
 
 export default function Enter() {
   const onValid = async data => {
@@ -57,11 +60,7 @@ export default function Enter() {
             </div>
           ) : (
             <div className=" flex justify-center">
-              <button
-                className=" flex justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                onClick={() => {}}
-              >
-                <span>
+              {/* <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
@@ -86,9 +85,26 @@ export default function Enter() {
                     />
                     <path fill="none" d="M0 0h48v48H0z" />
                   </svg>
-                </span>
-                <span className=" ml-[8px]">구글 계정으로 로그인</span>
-              </button>
+                </span> */}
+              <GoogleLogin
+                onSuccess={credentialResponse => {
+                  console.log(credentialResponse);
+                }}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+              />
+              {/* <span className=" ml-[8px]">구글 계정으로 로그인</span>
+                <GoogleLogin
+                  onSuccess={credentialResponse => {
+                    console.log(credentialResponse);
+                  }}
+                  onError={() => {
+                    console.log('Login Failed');
+                  }}
+                  useOneTap
+                /> */}
+              <button onClick={() => googleLogout()}>logout</button>
             </div>
           )}
         </div>
