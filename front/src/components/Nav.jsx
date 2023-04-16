@@ -13,7 +13,7 @@ const Nav = () => {
       <nav className="flex w-full items-center justify-between">
         <ul className=" ml-2 flex items-center space-x-2 whitespace-nowrap uppercase">
           <li className=" cursor-pointer ">
-            <Link className=" font-mono font-bold text-xl ml-1" to="/">
+            <Link className=" font-mono font-bold text-xl ml-1" to={URL.HOME}>
               ALgoHelper
             </Link>
           </li>
@@ -50,13 +50,13 @@ const Nav = () => {
             </li>
           ) : null}
           {isLoggedIn ? (
-            <Link className="min-w-[30px]" to="/enter">
-              로그인
-            </Link>
-          ) : (
             <li>
               <Link to={URL.MYPAGE}>마이 페이지</Link>
             </li>
+          ) : (
+            <Link className="min-w-[30px]" to={URL.ENTER}>
+              로그인
+            </Link>
           )}
         </ul>
       </nav>
