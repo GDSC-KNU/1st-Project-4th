@@ -88,7 +88,7 @@ const Nav = () => {
           <Link to="/board">자유 게시판</Link>
         </li>
         <li className=" ml-4">
-          <Link to="/contact">토론 게시판</Link>
+          <Link to="/board">토론 게시판</Link>
         </li>
         {'user' ? (
           <li className=" ml-4">
