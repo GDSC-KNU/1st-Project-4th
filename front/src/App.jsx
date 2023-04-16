@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { getUserIsLogin } from './store/userState';
 
 import Home from './pages/Home';
 import Nav from './components/Nav';
@@ -10,6 +11,9 @@ import Profile from './pages/Profile';
 import BoardDetail from './pages/Board/BoardDetail';
 
 function App() {
+  const isLogin = useRecoilValue(getUserIsLogin);
+
+  console.log(isLogin);
   return (
     <div className="App">
       <Nav />

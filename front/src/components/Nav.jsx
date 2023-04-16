@@ -2,31 +2,6 @@ import { Link } from 'react-router-dom';
 
 const Nav = () => {
   return (
-    // <header>
-    //   <nav className=" flex fixed top-0 bg-gray-500 w-full h-12 items-center">
-    //     <ul className=" flex w-full justify-between font-bold whitespace-nowrap">
-    //       <div className=" flex mx-3 p-2">
-    //         <li className=" min-w-[30px]">
-    //           <Link to="/">홈</Link>
-    //         </li>
-    //         <li className=" ml-4 min-w-[40px]">
-    //           <Link to="/board">게시판</Link>
-    //         </li>
-    //       </div>
-    //       <div className="  flex mx-3 p-2">
-    //         <li className=" ml-4  ">
-    //           <Link className="min-w-[30px]" to="/enter">
-    //             로그인
-    //           </Link>
-    //         </li>
-    //         <li className=" ml-4">
-    //           <Link to="/profile/1">마이 페이지</Link>
-    //         </li>
-    //       </div>
-    //     </ul>
-    //   </nav>
-    // </header>
-
     <header className=" fixed top-0 z-20 h-12 w-full bg-white  py-2 shadow-md">
       <nav className="flex w-full items-center justify-between">
         <ul className=" ml-2 flex items-center space-x-2 whitespace-nowrap uppercase">
@@ -56,11 +31,7 @@ const Nav = () => {
           {'user !== admin' ? null : <li className=" mr-3">Admin</li>}
           {'Session' ? (
             <li className=" mr-3 flex min-w-[26px] cursor-pointer items-center p-0">
-              <a
-                className=" flex items-center rounded-full"
-                href="/profile"
-                passHref
-              >
+              <a className=" flex items-center rounded-full" href="/profile">
                 {/* <Image
                   className=" rounded-full"
                   src={nextSession?.user?.image ?? ''}
