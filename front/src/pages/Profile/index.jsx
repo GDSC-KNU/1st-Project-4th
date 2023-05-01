@@ -89,7 +89,7 @@ for (let i = 0; i < numCols; i++) {
   const end = Math.min((i + 1) * Math.ceil(rows.length / numCols), rows.length);
   const col = (
     <div className="flex justify-center">
-      <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+      <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
         {rows.slice(start, end)}
       </ul>
     </div>
@@ -106,79 +106,76 @@ for (let i = 0; i < numCols; i++) {
     <>
 
 
-<a href="#" className="w-full m-10 bg-white border border-gray-200 rounded-lg shadow">
 
-        <div className="flex flex-row">
 
-            <div className='w-1/2'>
+<a  className="w-full m-8 rounded-lg shadow px-4 py-3 sm:px-6  ">
 
-            {data ? (
-              data
-                .filter((item) => item.serviceUser_id === 2) // Filter the array to only show items with serviceUser_id of 1
-                .map((item) => (
-                  <div className="m-8 w-1/2 border-gray-200 rounded-lg shadow">
-                    <div className="flex items-center space-x-4">
-                      <div key={item.id} className="font-medium dark:text-white">
-                        <div>{item.name}</div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">{item.launchdate}</div>
-                      </div>
-                    </div>
-                  </div>
-                ))
-            ) : (
-              <p>Loading data...</p>
-            )}
-
-            
-
-                <div className="flex-auto ml-8">
-                <h3 className="w-1/2 mb-4 font-semibold text-gray-900 dark:text-white">하루에 받을 문제 수</h3>
-             
-        <ul className="w-1/2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            {items.map((item) => (
-            
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                <div className="flex items-center pl-3">
-                <input
-                    id="list-radio-license" 
-                    type="radio"
-                    name="list-radio"
-                    value={item.value}
-                    checked={selectedValue === item.value}
-                    onChange={(event) => setSelectedValue(event.target.value)}
-                    
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                />
-                <label key={item.value} htmlFor="list-radio-license" className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                
-                {item.label}
-                </label>
-                </div>
-                </li>
-
-            ))}
-        </ul>
-
-    
+    <div className="flex flex-row">
       
+      <div className='w-full'>
+            {data ? (
+        <div className="flex flex-row justify-center">
+          {data
+            .filter((item) => item.serviceUser_id === 2)
+            .map((item) => (
+              <div key={item.id} className="w-1/2 max-w-sm justify-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-8 mb-4">
+                <div className="mt-8 items-center r space-x-4">
+                  <div className="font-medium dark:text-white flex flex-col items-center pb-10">
+                    <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1CvVWfyeNhk-5RPUuO8dXUOFXAz7LyLSVZA&usqp=CAU" alt=""/>
+                    <div className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{item.name}</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">시작일자 {item.launchdate}</div>
+                  </div>
                 </div>
+              </div>
+            ))
+          }
+        </div>
+      ) : (
+        <p>Loading data...</p>
+      )}
 
-                </div>
+        <div className="flex-row mt-8 mb-8 ">
+          <div className="w-1/2 flex items-center justify-center">
+            <h3 className="w-full mb-4 font-bold text-gray-900 dark:text-white text-center">하루에 받을 문제 수</h3>
+          </div>
+            <div className="flex w-full">
+              <ul className="w-3/4 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                {items.map((item) => (
+                  <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600" key={item.value}>
+                    <div className="flex items-center pl-3">
+                      <input
+                        id="list-radio-license" 
+                        type="radio"
+                        name="list-radio"
+                        value={item.value}
+                        checked={selectedValue === item.value}
+                        onChange={(event) => setSelectedValue(event.target.value)}
+                        className=" text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                      />
+                      <label htmlFor="list-radio-license" className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        {item.label}
+                      </label>
+                    </div>
+                  </li>
+                  ))}
+              </ul>
+              <div className="flex justify-end w-full">
+              <DatePickerButton className="" />
+              </div> 
+          </div>
+          
+          </div>
+          </div>
+        </div>
 
-                 {/* <a href="#" className="w-3/4 m-10 bg-white border border-gray-200 rounded-lg shadow">
-                나의 실력은 어느정도?
-                </a>  */}
                 
-                </div>
-
-                <DatePickerButton />
 
                 <div className="flex justify-center">
                   <h3 className="mt-10 font-semibold text-gray-900 dark:text-white">오늘의 문제</h3>
                 </div>
                 
                 <div className="flex justify-center">
-                <ul className="w-1/2 text-sm font-medium mt-5 text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                <ul className="w-1/2 text-sm font-medium mt-5 text-gray-900 bg-white border border-gray-200 rounded-lg  dark:bg-gray-200 dark:text-white">
                 {cols}
                 </ul>
                 </div>
@@ -186,15 +183,16 @@ for (let i = 0; i < numCols; i++) {
                 <div className="flex justify-center">
                   <div className="m-8 items-center">
                     <Pagination />
-                    
-                  
                   </div>
                 </div>
                
                 
                 <div className="flex justify-end">
-                    <button type="button" className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 place-items-end">
-                    저장
+                    <button type="button" className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-8 mb-6 place-items-end">
+                    적용
+                    </button>
+                    <button type="button" className="text-white bg-gradient-to-r from-purple-400 via-purple-400 to-purple-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-8 mb-6 place-items-end">
+                    취소
                     </button>
                 </div>
 
