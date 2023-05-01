@@ -1,11 +1,15 @@
 import { useForm } from 'react-hook-form';
+import { useParams, useNavigate } from 'react-router-dom';
+import useSWR, { useSWRConfig } from 'swr';
+
 import useMutation from '@/libs/useMutation';
-import { useParams } from 'react-router-dom';
+
 import Input from '@/components/Input';
 import Button from '@/components/Button';
-import Loading from '@/components/Loading';
 
 export default function Post() {
+  const { mutate } = useSWRConfig();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -16,11 +20,24 @@ export default function Post() {
     setValue,
   } = useForm({ mode: 'onChange' });
 
+  const { data: postsResponse, isLoading } = useSWR(
+    `https://msw.com/api/board`,
+  );
+
+  const [createPost, { loading, data, error }] = useMutation(
+    'https://msw.com/api/board',
+  );
+
   const onValid = async data => {
+    // console.log(data);
+    // reset()
     // resetField('comment');
     // if (loading) return;
-    // await createComment({ ...data });
+    await createPost({ ...data });
+    mutate(`https://msw.com/api/board`);
+    navigate(`/boards`);
     // mutate(`https://msw.com/api/comment/${id}`);
+
     return;
   };
 
