@@ -105,6 +105,7 @@ export default function Board() {
           onChange={onPageChangeHandler}
         />
       </div>
+      
     </div>
   );
 }
