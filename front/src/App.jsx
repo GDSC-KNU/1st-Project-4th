@@ -9,7 +9,7 @@ import Home from './pages/Home';
 import Nav from './components/Nav';
 import Enter from './pages/Enter';
 import Board from './pages/Board/Index';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile/Index';
 import BoardDetail from './pages/Board/BoardDetail';
 import PrivateRouter from './components/PrivateRouter';
 import PublicRouter from './components/PublicRouter';

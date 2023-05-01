@@ -1,5 +1,5 @@
 import React from 'react';
-import { cls } from '@libs/client/utils';
+import { cls } from '@/libs/cls';
 
 export default function Button({ large = false, onClick, text, ...rest }) {
   return (

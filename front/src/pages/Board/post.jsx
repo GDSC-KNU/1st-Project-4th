@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import useMutation from '@/libs/useMutation';
 import { useParams } from 'react-router-dom';
 import Input from '@/components/Input';
+import Button from '@/components/Button';
 
 export default function Post() {
   const {
@@ -31,7 +32,7 @@ export default function Post() {
       <form onSubmit={handleSubmit(onValid, onInvalid)}>
         <div className=" mb-12">
           <Input
-            register={register('comment')}
+            register={register('title')}
             required
             name="article"
             type="text"
@@ -39,7 +40,7 @@ export default function Post() {
             placeholder="제목을 입력해 주세요"
           ></Input>
           <Input
-            register={register('comment')}
+            register={register('hashtag')}
             required
             name="article"
             type="text"
@@ -47,15 +48,23 @@ export default function Post() {
             placeholder="해시태그 입력후 엔터를 눌러주세요"
           ></Input>
         </div>
-        <div className=" h-[400px] w-full">
+        <div className=" h-[400px] w-full mb-12">
           <Input
-            register={register('comment')}
+            register={register('description')}
             required
             name="article"
             type="textarea"
             kind="responsive"
             placeholder="본문을 입력해 주세요"
           ></Input>
+        </div>
+        <div>
+          <Button
+            onClick={() => {
+              console.log('sad');
+            }}
+            text="asds"
+          />
         </div>
       </form>
     </div>
