@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Input from '../../components/Input';
 import { useForm } from 'react-hook-form';
 import useMutation from '../../libs/useMutation';
+import Comments from '@/components/Comments';
 
 export default function BoardDetail() {
   const { mutate } = useSWRConfig();
@@ -70,7 +71,7 @@ export default function BoardDetail() {
           </span>
         </div>
       </div>
-      <div className="px-4 my-5 space-y-5">
+      {/* <div className="px-4 my-5 space-y-5">
         {post?.commentList.map((item, i) => (
           <div key={item.id} className="flex items-start space-x-3">
             <div className="w-8 h-8 bg-slate-200 rounded-full" />
@@ -102,7 +103,7 @@ export default function BoardDetail() {
             작성
           </button>
         </form>
-      </div>
+      </div> */}
     </div>
   );
 }
