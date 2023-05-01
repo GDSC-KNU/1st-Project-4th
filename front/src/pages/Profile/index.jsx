@@ -195,9 +195,6 @@ for (let i = 0; i < numCols; i++) {
                     취소
                     </button>
                 </div>
-
-       
-    
         </a>
    
     </>
