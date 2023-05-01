@@ -1,24 +1,31 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function useMutation(url) {
-  const [state, setSate] = useState({
+  const [state, setState] = useState({
     loading: false,
     data: undefined,
     error: undefined,
   });
-  function mutation(data) {
-    setSate(prev => ({ ...prev, loading: true }));
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then(response => response.json().catch(() => {}))
-      .then(data => setSate(prev => ({ ...prev, data })))
-      .catch(error => setSate(prev => ({ ...prev, error })))
-      .finally(() => setSate(prev => ({ ...prev, loading: false })));
+  async function mutation(data) {
+    setState(prev => ({ ...prev, loading: true }));
+
+    try {
+      const response = await axios.post(url, data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const responseData = response.data;
+      setState(prev => ({ ...prev, data: responseData }));
+      return responseData;
+    } catch (error) {
+      setState(prev => ({ ...prev, error: error }));
+      throw error;
+    } finally {
+      setState(prev => ({ ...prev, loading: false }));
+    }
   }
   return [mutation, { ...state }];
 }

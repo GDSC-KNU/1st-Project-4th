@@ -19,16 +19,16 @@ export default function Board() {
 
   return (
     <div className="  min-w-[300px] w-full pt-6 px-3">
-      <div className=" flex">
+      {/* <div className=" flex">
         <div className=" p-2 border-[1px] border-solid cursor-pointer">
           질문 게시판
         </div>
         <div className=" p-2 border-[1px] border-solid cursor-pointer">
           자유 게시판
         </div>
-      </div>
-      <div className=" border-[1px] mb-4 relative bottom-[1px]"></div>
-      <div className=" space-y-2 mb-8">
+      </div> */}
+      {/* <div className=" border-[1px] mb-4 relative bottom-[1px]"></div> */}
+      <div className=" space-y-2 mb-8 mt-4">
         {posts &&
           posts.map(
             (

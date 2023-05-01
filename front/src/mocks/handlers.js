@@ -145,7 +145,9 @@ export const handlers = [
   }),
 
   // comment
-  rest.get("https://msw.com/api/comment", async (req, res, ctx) => {
+  rest.get("https://msw.com/api/comment/:id", async (req, res, ctx) => {
+    const { id } = req.params
+    
     return res(
       ctx.json(comments)
     );

@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 
+import { RecoilRoot } from 'recoil';
+import { BrowserRouter } from 'react-router-dom';
+import { SWRConfig } from 'swr';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 if (import.meta.env.MODE === 'development') {
@@ -16,16 +21,40 @@ if (import.meta.env.MODE === 'development') {
     .then(() => {
       // Render the application.
       root.render(
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>,
+        <GoogleOAuthProvider clientId="783621219436-8lrjsgnio1oapou3aeaf6b43gn80sbvg.apps.googleusercontent.com">
+          <SWRConfig
+            value={{
+              fetcher: url => fetch(url).then(response => response.json()),
+            }}
+          >
+            <RecoilRoot>
+              <BrowserRouter>
+                <React.StrictMode>
+                  <App />
+                </React.StrictMode>
+              </BrowserRouter>
+            </RecoilRoot>
+          </SWRConfig>
+        </GoogleOAuthProvider>,
       );
     });
 } else {
   // Render the application in production without the MSW.
   root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
+    <GoogleOAuthProvider clientId="783621219436-8lrjsgnio1oapou3aeaf6b43gn80sbvg.apps.googleusercontent.com">
+      <SWRConfig
+        value={{
+          fetcher: url => fetch(url).then(response => response.json()),
+        }}
+      >
+        <RecoilRoot>
+          <BrowserRouter>
+            <React.StrictMode>
+              <App />
+            </React.StrictMode>
+          </BrowserRouter>
+        </RecoilRoot>
+      </SWRConfig>
+    </GoogleOAuthProvider>,
   );
 }
