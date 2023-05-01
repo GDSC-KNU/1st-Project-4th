@@ -1,5 +1,5 @@
 # 1st-Project-4th
-
+맞춤 알고리즘 문제를 추천해주는 웹 커뮤니티 서비스.
 
 <div align="center">
 
@@ -9,7 +9,9 @@
 
 
 ## 💬 서비스 소개
-맞춤 알고리즘 문제를 추천해주는 웹 커뮤니티 서비스.
+유저 레벨에 맞춰 알고리즘 문제를 추천해주는 웹 커뮤니티 서비스입니다.
+<br/><br/>
+https://www.notion.so/659f3f9d0a41440eb9cd9076047a2ed9?v=03737c8453d8416d9cf91d1a8f2a07f2
 
 ## 🙌🏻 멤버
 |                                         Frontend                                         |                                          Frontend                                          |                                          Frontend                                           |                                         Backend                                         |                                         Backend                                         |
@@ -28,17 +30,17 @@
 
 **Library |** React, SWR, tailwindCSS, react-hook-form
 
-**Build |** Vite, Webpack, Babel
+**Build |** MSW, Vite, Babel
 
 
 ### 🧷 백엔드
 
   
-**Language |** 
+**Language |** Java 
 
-**Framework |** 
+**Framework |** SpringBoot
 
-**Build Tool |** 
+**Build Tool |** Gradle
 
 **Docs |** 
 
