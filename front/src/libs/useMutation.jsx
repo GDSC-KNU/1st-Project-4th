@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function useMutation(url) {
   const [state, setSate] = useState({
@@ -8,13 +9,19 @@ export default function useMutation(url) {
   });
   function mutation(data) {
     setSate(prev => ({ ...prev, loading: true }));
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+    // fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    axios
+      .post(url, data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
       .then(response => response.json().catch(() => {}))
       .then(data => setSate(prev => ({ ...prev, data })))
       .catch(error => setSate(prev => ({ ...prev, error })))

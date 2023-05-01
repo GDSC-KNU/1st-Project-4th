@@ -11,21 +11,22 @@ import Nav from './components/Nav';
 import Enter from './pages/Enter';
 import Board from './pages/Board';
 import Profile from './pages/Profile';
-import BoardDetail from './pages/Board/BoardDetail';
+import BoardDetail from './pages/Board/boardDetail';
 import PrivateRouter from './components/PrivateRouter';
 import PublicRouter from './components/PublicRouter';
+import BoardPost from './pages/Board/post';
 
 function App() {
   const isLoggedIn = useRecoilValue(getUserIsLoggedIn);
 
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
   return (
     <div className="App">
       <Nav />
-      <div className=" w-full max-w-[950px] flex flex-col items-center py-12 mx-auto">
+      <div className=" w-full max-w-[950px] flex flex-col items-center py-16 mx-auto">
         <Routes>
-          <Route element={<PrivateRouter isAuthenticated={isLoggedIn} />}>
-            <Route path={URL.BOARD_POST} element={<Board />}></Route>
+          <Route element={<PrivateRouter isAuthenticated={true} />}>
+            <Route path={URL.BOARD_POST} element={<BoardPost />}></Route>
             <Route path={URL.MYPAGE} element={<Profile />}></Route>
           </Route>
           <Route element={<PublicRouter isAuthenticated={isLoggedIn} />}>
