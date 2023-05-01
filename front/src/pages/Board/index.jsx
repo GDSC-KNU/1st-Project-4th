@@ -18,7 +18,7 @@ export default function Board() {
   // console.log(posts);
 
   return (
-    <div className="  min-w-[300px] w-full pt-6 px-3">
+    <div className="  min-w-[300px] w-full px-3">
       {/* <div className=" flex">
         <div className=" p-2 border-[1px] border-solid cursor-pointer">
           질문 게시판

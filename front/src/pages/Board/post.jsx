@@ -28,7 +28,7 @@ export default function Post() {
   };
 
   return (
-    <div className=" w-full sm:px-3 px-1">
+    <div className=" w-full sm:px-3 px-1 mt-3">
       <form onSubmit={handleSubmit(onValid, onInvalid)}>
         <div className=" mb-12">
           <Input
@@ -59,12 +59,7 @@ export default function Post() {
           ></Input>
         </div>
         <div>
-          <Button
-            onClick={() => {
-              console.log('sad');
-            }}
-            text="asds"
-          />
+          <Button text="asds" />
         </div>
       </form>
     </div>

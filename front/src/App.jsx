@@ -19,9 +19,9 @@ function App() {
   const isLoggedIn = useRecoilValue(getUserIsLoggedIn);
 
   return (
-    <div className="App">
+    <div>
       <Nav />
-      <div className=" w-full max-w-[950px] flex flex-col items-center py-16 mx-auto">
+      <div className="w-full max-w-[950px] flex flex-col items-center sm:mt-[48px] mt-[68px]  mx-auto">
         <Routes>
           {/* isLoggedIn or !isLoggedIn */}
           <Route element={<PrivateRouter isAuthenticated={true} />}>
