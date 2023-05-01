@@ -67,7 +67,7 @@ const Nav = () => {
         <li className=" ml-4">
           <Link to={URL.BOARD}>토론 게시판</Link>
         </li>
-        {'user' ? (
+        {isLoggedIn ? (
           <li className=" ml-4">
             <Link to={URL.BOARD_POST}>글쓰기</Link>
           </li>
