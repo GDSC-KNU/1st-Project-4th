@@ -3,6 +3,7 @@ import useMutation from '@/libs/useMutation';
 import { useParams } from 'react-router-dom';
 import Input from '@/components/Input';
 import Button from '@/components/Button';
+import Loading from '@/components/Loading';
 
 export default function Post() {
   const {
@@ -56,9 +57,10 @@ export default function Post() {
           ></Input>
         </div>
         <div>
-          <Button text="asds" />
+          <Button text="등록" />
         </div>
       </form>
+      {/* <Loading /> */}
     </div>
   );
 }
