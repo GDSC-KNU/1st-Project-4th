@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Pagination from '../../components/Pagination';
+import Pagination from '@/components/Pagination';
 import useSWR from 'swr';
 import { useState } from 'react';
 

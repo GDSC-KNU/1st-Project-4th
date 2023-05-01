@@ -34,7 +34,6 @@ export default function Post() {
           <Input
             register={register('title')}
             required
-            name="article"
             type="text"
             kind="normal"
             placeholder="제목을 입력해 주세요"
@@ -42,7 +41,6 @@ export default function Post() {
           <Input
             register={register('hashtag')}
             required
-            name="article"
             type="text"
             kind="normal"
             placeholder="해시태그 입력후 엔터를 눌러주세요"
@@ -52,7 +50,6 @@ export default function Post() {
           <Input
             register={register('description')}
             required
-            name="article"
             type="textarea"
             kind="responsive"
             placeholder="본문을 입력해 주세요"

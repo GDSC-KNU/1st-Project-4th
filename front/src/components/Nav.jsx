@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 
 import { getUserIsLoggedIn } from '../store/userState';
 
-import { URL } from '../constants/url';
+import { URL } from '@/constants/url';
 
 const Nav = () => {
   const isLoggedIn = useRecoilValue(getUserIsLoggedIn);
@@ -51,7 +51,7 @@ const Nav = () => {
           ) : null}
           {isLoggedIn ? (
             <li>
-              <Link to={URL.MYPAGE}>마이 페이지</Link>
+              <Link to={URL.MYPAGE}>My</Link>
             </li>
           ) : (
             <Link className="min-w-[30px]" to={URL.ENTER}>
