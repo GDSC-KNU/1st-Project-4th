@@ -12,6 +12,43 @@ const post = {
   status: null
 }
 
+const user = {
+  "success": true,
+  "code": 0,
+  "msg": "성공하였습니다.",
+  "data": {
+      "mail": "hys3396@gmail.com",
+      "level": "PLATINUM",
+      "problem_count": 0,
+      "problem_current": 0
+  }
+}
+
+const users = {
+  "success": true,
+  "code": 0,
+  "msg": "성공하였습니다.",
+  "data": [{
+    "id": 1,
+    "mail": "hys3396@gmail.com",
+    "level": "PLATINUM",
+    "problem_count": 0,
+    "problem_current": 0
+},{
+  "id": 2,
+  "mail": "hys3396@gmail.com",
+  "level": "PLATINUM",
+  "problem_count": 0,
+  "problem_current": 0
+},{
+  "id": 3,
+  "mail": "hys3396@gmail.com",
+  "level": "PLATINUM",
+  "problem_count": 0,
+  "problem_current": 0
+}]
+}
+
 const posts_response = {
   "success": true,
   "code": 0,
@@ -111,7 +148,7 @@ const serviceUser = [  {
   launchdate: "2021-01-12",
   }]
 
-  const problem = [  {
+  const problem = [{
       problem_id : 1,
       name: "피보나치 함수",
       url: 'https://www.acmicpc.net/problem/1003',
@@ -258,6 +295,22 @@ export const handlers = [
     let new_comment = { id: comments.length + 1, content : comment, user : { id: comments.length + 1, name : "익명"}}
     comments.push(new_comment)
     return res(ctx.json(new_comment));
+  }),
+
+  // user
+  rest.get("https://msw.com/api/user/:id", async (req, res, ctx) => {
+    const { id } = req.params;
+    
+    return res(
+      ctx.json(user)
+    )
+  }),
+
+  rest.get("https://msw.com/api/users", async (req, res, ctx) => {
+    
+    return res(
+      ctx.json(users)
+    )
   })
 
 ];

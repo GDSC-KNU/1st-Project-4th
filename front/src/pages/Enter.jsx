@@ -89,6 +89,8 @@ export default function Enter() {
               <GoogleLogin
                 onSuccess={credentialResponse => {
                   console.log(credentialResponse);
+                  localStorage.setItem('key_value', { id: 1 });
+                  location.reload();
                 }}
                 onError={() => {
                   console.log('Login Failed');

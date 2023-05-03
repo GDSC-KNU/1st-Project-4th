@@ -51,7 +51,15 @@ const Nav = () => {
           ) : null}
           {isLoggedIn ? (
             <li>
-              <Link to={URL.MYPAGE}>My</Link>
+              <a
+                className=" cursor-pointer"
+                onClick={() => {
+                  localStorage.removeItem('key_value');
+                  location.reload();
+                }}
+              >
+                로그아웃
+              </a>
             </li>
           ) : (
             <Link className="min-w-[30px]" to={URL.ENTER}>

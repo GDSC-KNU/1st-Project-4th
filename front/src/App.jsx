@@ -19,6 +19,7 @@ import Loading from '@/components/Loading';
 
 function App() {
   const isLoggedIn = useRecoilValue(getUserIsLoggedIn);
+
   return (
     <div>
       <Nav />
@@ -26,12 +27,12 @@ function App() {
         <Suspense fallback={<Loading />}>
           <Routes>
             {/* isLoggedIn or !isLoggedIn */}
-            <Route element={<PrivateRouter isAuthenticated={true} />}>
+            <Route element={<PrivateRouter isAuthenticated={isLoggedIn} />}>
               <Route path={URL.BOARD_POST} element={<BoardPost />}></Route>
               <Route path={URL.MYPAGE} element={<Profile />}></Route>
             </Route>
             {/* isLoggedIn or !isLoggedIn */}
-            <Route element={<PublicRouter isAuthenticated={true} />}>
+            <Route element={<PublicRouter isAuthenticated={isLoggedIn} />}>
               <Route path={URL.ENTER} element={<Enter />}></Route>
             </Route>
             <Route path={URL.HOME} element={<Home />}></Route>
