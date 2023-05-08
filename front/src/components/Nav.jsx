@@ -37,7 +37,7 @@ const Nav = () => {
           {'user !== admin' ? null : <li className=" mr-3">Admin</li>}
           {isLoggedIn ? (
             <li className=" mr-3 flex min-w-[26px] cursor-pointer items-center p-0">
-              <a className=" flex items-center rounded-full" href={URL.MYPAGE}>
+              <Link className=" flex items-center rounded-full" to={URL.MYPAGE}>
                 {/* <Image
                   className=" rounded-full"
                   src={nextSession?.user?.image ?? ''}
@@ -46,7 +46,7 @@ const Nav = () => {
                   alt={nextSession?.user?.id ?? ''}
                 ></Image> */}
                 <div>Icon</div>
-              </a>
+              </Link>
             </li>
           ) : null}
           {isLoggedIn ? (
@@ -54,7 +54,7 @@ const Nav = () => {
               <a
                 className=" cursor-pointer"
                 onClick={() => {
-                  localStorage.removeItem('key_value');
+                  localStorage.removeItem('access_token');
                   location.reload();
                 }}
               >

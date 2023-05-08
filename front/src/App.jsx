@@ -26,12 +26,10 @@ function App() {
       <div className="w-full max-w-[950px] flex flex-col items-center md:mt-[48px] mt-[68px]  mx-auto">
         <Suspense fallback={<Loading />}>
           <Routes>
-            {/* isLoggedIn or !isLoggedIn */}
             <Route element={<PrivateRouter isAuthenticated={isLoggedIn} />}>
               <Route path={URL.BOARD_POST} element={<BoardPost />}></Route>
               <Route path={URL.MYPAGE} element={<Profile />}></Route>
             </Route>
-            {/* isLoggedIn or !isLoggedIn */}
             <Route element={<PublicRouter isAuthenticated={isLoggedIn} />}>
               <Route path={URL.ENTER} element={<Enter />}></Route>
             </Route>

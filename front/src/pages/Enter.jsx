@@ -2,8 +2,11 @@ import { useForm } from 'react-hook-form';
 import { GoogleLogin } from '@react-oauth/google';
 import { useGoogleOneTapLogin } from '@react-oauth/google';
 import { googleLogout } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
+import { URL } from '@/constants/url';
 
 export default function Enter() {
+  const navigate = useNavigate();
   const onValid = async data => {
     resetField('comment');
     if (loading) return;
@@ -89,13 +92,22 @@ export default function Enter() {
               <GoogleLogin
                 onSuccess={credentialResponse => {
                   console.log(credentialResponse);
-                  localStorage.setItem('key_value', { id: 1 });
+                  localStorage.setItem('access_token', { id: 1 });
+                  navigate(URL.HOME);
                   location.reload();
                 }}
                 onError={() => {
                   console.log('Login Failed');
                 }}
               />
+              {/* <button
+                onClick={() => {
+                  navigate(`http://34.64.191.109:8080/api/google`);
+                }}
+              >
+                login
+              </button> */}
+              {/* <a href="http://34.64.191.109:8080/api/google"> 로그인 </a> */}
               {/* <span className=" ml-[8px]">구글 계정으로 로그인</span>
                 <GoogleLogin
                   onSuccess={credentialResponse => {
@@ -106,7 +118,15 @@ export default function Enter() {
                   }}
                   useOneTap
                 /> */}
-              <button onClick={() => googleLogout()}>logout</button>
+              {/* <button
+                onClick={() => {
+                  googleLogout();
+                  localStorage.removeItem('access_token');
+                  location.reload();
+                }}
+              >
+                Logout
+              </button> */}
             </div>
           )}
         </div>

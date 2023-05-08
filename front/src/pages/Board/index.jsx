@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Pagination from '@/components/Pagination';
 import useSWR from 'swr';
 import { useState } from 'react';
+import { URL } from '@/constants/url';
 
 export default function Board() {
   const {
@@ -10,6 +11,7 @@ export default function Board() {
     isLoading,
   } = useSWR('https://msw.com/api/board');
   const [currentpage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   const onPageChangeHandler = pageNumber => {
     setCurrentPage(pageNumber);
@@ -92,7 +94,10 @@ export default function Board() {
             </li>
           </ol>
         </div>
-        <div className=" border-[1px] border-solid p-2 cursor-pointer">
+        <div
+          onClick={() => navigate(URL.BOARD_POST)}
+          className=" border-[1px] border-solid p-2 cursor-pointer"
+        >
           글쓰기
         </div>
       </div>
