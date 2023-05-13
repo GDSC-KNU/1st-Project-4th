@@ -2,28 +2,52 @@ import { useForm } from 'react-hook-form';
 import { GoogleLogin } from '@react-oauth/google';
 import { useGoogleOneTapLogin } from '@react-oauth/google';
 import { googleLogout } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
+import { URL } from '@/constants/url';
+import axios from 'axios';
+import useMutation from '@/libs/useMutation';
+import { getUserIsLoggedIn } from '@/store/userState';
+import { useRecoilValue } from 'recoil';
 
 export default function Enter() {
-  const onValid = async data => {
-    resetField('comment');
-    if (loading) return;
-    // await createComment({ ...data });
-    // mutate(`https://msw.com/api/board/${id}`);
-    return;
-  };
+  const navigate = useNavigate();
+  // const onValid = async data => {
+  //   resetField('comment');
+  //   if (loading) return;
+  //   // await createComment({ ...data });
+  //   // mutate(`https://msw.com/api/board/${id}`);
+  //   return;
+  // };
 
-  const onInvalid = errors => {
-    if (loading) return;
-  };
+  // const onInvalid = errors => {
+  //   if (loading) return;
+  // };
 
-  const session = '';
+  const isLoggedIn = useRecoilValue(getUserIsLoggedIn);
+
+  const [onGoogleLoginSuccess, { loading, data, error }] = useMutation(
+    `https://msw.com/${URL.LOGIN}`,
+  );
+
+  // const onGoogleLoginSuccess = async credentialResponse => {
+  //   console.log(credentialResponse);
+  //   const { data } = await axios.post('url', credentialResponse, {
+  //     headers: {
+  //       'Content-Type': 'application/x-ww-form-urlencoded',
+  //     },
+  //   });
+  //   localStorage.setItem('access_token', data.token.access || '');
+  //   localStorage.setItem('refresh_token', data.token.refresh || '');
+  //   navigate(URL.HOME);
+  //   location.reload();
+  // };
 
   return (
     <div className="mt-16 px-4">
       <h3 className="text-3xl font-bold text-center">Enter</h3>
       <div className=" mt-12">
         <div className="">
-          {session ? (
+          {isLoggedIn ? (
             <div className=" flex justify-center">
               <button
                 className=" flex justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
@@ -87,13 +111,24 @@ export default function Enter() {
                   </svg>
                 </span> */}
               <GoogleLogin
-                onSuccess={credentialResponse => {
-                  console.log(credentialResponse);
+                onSuccess={async credentialResponse => {
+                  await onGoogleLoginSuccess(credentialResponse);
+                  localStorage.setItem('access_token', data);
+                  navigate(URL.HOME);
+                  location.reload();
                 }}
                 onError={() => {
                   console.log('Login Failed');
                 }}
               />
+              {/* <button
+                onClick={() => {
+                  navigate(`http://34.64.191.109:8080/api/google`);
+                }}
+              >
+                login
+              </button> */}
+              {/* <a href="http://34.64.191.109:8080/api/google"> 로그인 </a> */}
               {/* <span className=" ml-[8px]">구글 계정으로 로그인</span>
                 <GoogleLogin
                   onSuccess={credentialResponse => {
@@ -104,7 +139,15 @@ export default function Enter() {
                   }}
                   useOneTap
                 /> */}
-              <button onClick={() => googleLogout()}>logout</button>
+              {/* <button
+                onClick={() => {
+                  googleLogout();
+                  localStorage.removeItem('access_token');
+                  location.reload();
+                }}
+              >
+                Logout
+              </button> */}
             </div>
           )}
         </div>

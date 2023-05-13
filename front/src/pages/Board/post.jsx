@@ -1,9 +1,16 @@
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { useSWRConfig } from 'swr';
+import { useState, useEffect } from 'react';
+
 import useMutation from '@/libs/useMutation';
-import { useParams } from 'react-router-dom';
+
 import Input from '@/components/Input';
+import Button from '@/components/Button';
 
 export default function Post() {
+  const { mutate } = useSWRConfig();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -11,14 +18,21 @@ export default function Post() {
     resetField,
     watch,
     formState: { errors },
-    setValue,
   } = useForm({ mode: 'onChange' });
 
+  // const { data: postsResponse, isLoading } = useSWR(
+  //   `https://msw.com/api/board`,
+  // );
+
+  const [createPost, { loading, data, error }] = useMutation(
+    'https://msw.com/api/board',
+  );
+
   const onValid = async data => {
-    // resetField('comment');
-    // if (loading) return;
-    // await createComment({ ...data });
-    // mutate(`https://msw.com/api/comment/${id}`);
+    await createPost({ ...data });
+    mutate(`https://msw.com/api/board`);
+    navigate(`/boards`);
+
     return;
   };
 
@@ -27,37 +41,38 @@ export default function Post() {
   };
 
   return (
-    <div className=" w-full sm:px-3 px-1">
+    <div className=" w-full sm:px-3 px-1 mt-3">
       <form onSubmit={handleSubmit(onValid, onInvalid)}>
         <div className=" mb-12">
           <Input
-            register={register('comment')}
+            register={register('title')}
             required
-            name="article"
             type="text"
             kind="normal"
             placeholder="제목을 입력해 주세요"
           ></Input>
           <Input
-            register={register('comment')}
+            register={register('hashtag')}
             required
-            name="article"
             type="text"
             kind="normal"
             placeholder="해시태그 입력후 엔터를 눌러주세요"
           ></Input>
         </div>
-        <div className=" h-[400px] w-full">
+        <div className=" h-[400px] w-full mb-12">
           <Input
-            register={register('comment')}
+            register={register('description')}
             required
-            name="article"
             type="textarea"
             kind="responsive"
             placeholder="본문을 입력해 주세요"
           ></Input>
         </div>
+        <div>
+          <Button text="등록" />
+        </div>
       </form>
+      {/* <Loading /> */}
     </div>
   );
 }
