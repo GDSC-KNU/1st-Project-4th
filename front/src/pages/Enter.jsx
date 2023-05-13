@@ -4,22 +4,41 @@ import { useGoogleOneTapLogin } from '@react-oauth/google';
 import { googleLogout } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '@/constants/url';
+import axios from 'axios';
+import useMutation from '@/libs/useMutation';
 
 export default function Enter() {
   const navigate = useNavigate();
-  const onValid = async data => {
-    resetField('comment');
-    if (loading) return;
-    // await createComment({ ...data });
-    // mutate(`https://msw.com/api/board/${id}`);
-    return;
-  };
+  // const onValid = async data => {
+  //   resetField('comment');
+  //   if (loading) return;
+  //   // await createComment({ ...data });
+  //   // mutate(`https://msw.com/api/board/${id}`);
+  //   return;
+  // };
 
-  const onInvalid = errors => {
-    if (loading) return;
-  };
+  // const onInvalid = errors => {
+  //   if (loading) return;
+  // };
 
   const session = '';
+
+  const [onGoogleLoginSuccess, { loading, data, error }] = useMutation(
+    `https://msw.com/${URL.LOGIN}`,
+  );
+
+  // const onGoogleLoginSuccess = async credentialResponse => {
+  //   console.log(credentialResponse);
+  //   const { data } = await axios.post('url', credentialResponse, {
+  //     headers: {
+  //       'Content-Type': 'application/x-ww-form-urlencoded',
+  //     },
+  //   });
+  //   localStorage.setItem('access_token', data.token.access || '');
+  //   localStorage.setItem('refresh_token', data.token.refresh || '');
+  //   navigate(URL.HOME);
+  //   location.reload();
+  // };
 
   return (
     <div className="mt-16 px-4">
@@ -90,9 +109,9 @@ export default function Enter() {
                   </svg>
                 </span> */}
               <GoogleLogin
-                onSuccess={credentialResponse => {
-                  console.log(credentialResponse);
-                  localStorage.setItem('access_token', { id: 1 });
+                onSuccess={async credentialResponse => {
+                  await onGoogleLoginSuccess(credentialResponse);
+                  localStorage.setItem('access_token', data);
                   navigate(URL.HOME);
                   location.reload();
                 }}

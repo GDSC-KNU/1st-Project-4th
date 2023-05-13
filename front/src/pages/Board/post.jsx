@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useSWRConfig } from 'swr';
+import { useState, useEffect } from 'react';
 
 import useMutation from '@/libs/useMutation';
 
@@ -39,8 +40,34 @@ export default function Post() {
     if (loading) return;
   };
 
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+
+  function increment() {
+    setCount(count + 1);
+  }
+
+  function start() {
+    setStarted(true);
+  }
+
+  useEffect(() => {
+    if (started) {
+      const timeout = setTimeout(() => alert(`Your score is ${count}!`), 5000);
+      return () => clearTimeout(timeout);
+    }
+  }, [count, started]);
+
   return (
     <div className=" w-full sm:px-3 px-1 mt-3">
+      <button
+        onClick={() => {
+          increment();
+          start();
+        }}
+      >
+        {started ? 'Current score: ' + count : 'Start'}
+      </button>
       <form onSubmit={handleSubmit(onValid, onInvalid)}>
         <div className=" mb-12">
           <Input

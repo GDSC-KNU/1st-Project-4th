@@ -311,6 +311,13 @@ export const handlers = [
     return res(
       ctx.json(users)
     )
+  }),
+
+  // Login
+  rest.post("https://msw.com/api/auth/login", async (req, res, ctx) => {
+    return res(
+      ctx.json(user)
+    )
   })
 
 ];
