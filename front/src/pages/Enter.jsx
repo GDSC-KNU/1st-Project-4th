@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { URL } from '@/constants/url';
 import axios from 'axios';
 import useMutation from '@/libs/useMutation';
+import { getUserIsLoggedIn } from '@/store/userState';
+import { useRecoilValue } from 'recoil';
 
 export default function Enter() {
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ export default function Enter() {
   //   if (loading) return;
   // };
 
-  const session = '';
+  const isLoggedIn = useRecoilValue(getUserIsLoggedIn);
 
   const [onGoogleLoginSuccess, { loading, data, error }] = useMutation(
     `https://msw.com/${URL.LOGIN}`,
@@ -45,7 +47,7 @@ export default function Enter() {
       <h3 className="text-3xl font-bold text-center">Enter</h3>
       <div className=" mt-12">
         <div className="">
-          {session ? (
+          {isLoggedIn ? (
             <div className=" flex justify-center">
               <button
                 className=" flex justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
