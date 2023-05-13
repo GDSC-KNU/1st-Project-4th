@@ -135,11 +135,11 @@ for (let i = 0; i < numCols; i++) {
       )}
 
         <div className="flex-row mt-8 mb-8 ">
-          <div className="w-1/2 flex items-center justify-center">
-            <h3 className="w-1/2 mb-4 font-bold text-gray-900 dark:text-white text-center">하루에 받을 문제 수</h3>
+          <div className="w-1/4 flex items-center justify-center">
+            <h3 className="w-1/4 mb-4 mr-8 font-bold text-gray-900 dark:text-white text-center">문제 수</h3>
           </div>
             <div className="flex w-full">
-              <ul className="w-3/4 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+              <ul className="w-1/4 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                 {items.map((item) => (
                   <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600" key={item.value}>
                     <div className="flex items-center pl-3">
@@ -152,7 +152,7 @@ for (let i = 0; i < numCols; i++) {
                         onChange={(event) => setSelectedValue(event.target.value)}
                         className=" text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
-                      <label htmlFor="list-radio-license" className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                      <label htmlFor="list-radio-license" className="w-full py-3 text-center text-sm font-medium text-gray-900 dark:text-gray-300">
                         {item.label}
                       </label>
                     </div>
