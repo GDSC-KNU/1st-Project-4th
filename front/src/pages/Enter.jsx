@@ -1,46 +1,19 @@
-import { useForm } from 'react-hook-form';
+import { useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+
 import { GoogleLogin } from '@react-oauth/google';
 import { useGoogleOneTapLogin } from '@react-oauth/google';
 import { googleLogout } from '@react-oauth/google';
-import { useNavigate } from 'react-router-dom';
-import { URL } from '@/constants/url';
-import axios from 'axios';
-import useMutation from '@/libs/useMutation';
+
 import { getUserIsLoggedIn } from '@/store/userState';
-import { useRecoilValue } from 'recoil';
+import { useLogin } from '@/libs/useLogin';
 
 export default function Enter() {
   const navigate = useNavigate();
-  // const onValid = async data => {
-  //   resetField('comment');
-  //   if (loading) return;
-  //   // await createComment({ ...data });
-  //   // mutate(`https://msw.com/api/board/${id}`);
-  //   return;
-  // };
 
-  // const onInvalid = errors => {
-  //   if (loading) return;
-  // };
+  const loginHandler = useLogin();
 
   const isLoggedIn = useRecoilValue(getUserIsLoggedIn);
-
-  const [onGoogleLoginSuccess, { loading, data, error }] = useMutation(
-    `https://msw.com/${URL.LOGIN}`,
-  );
-
-  // const onGoogleLoginSuccess = async credentialResponse => {
-  //   console.log(credentialResponse);
-  //   const { data } = await axios.post('url', credentialResponse, {
-  //     headers: {
-  //       'Content-Type': 'application/x-ww-form-urlencoded',
-  //     },
-  //   });
-  //   localStorage.setItem('access_token', data.token.access || '');
-  //   localStorage.setItem('refresh_token', data.token.refresh || '');
-  //   navigate(URL.HOME);
-  //   location.reload();
-  // };
 
   return (
     <div className="mt-16 px-4">
@@ -84,70 +57,12 @@ export default function Enter() {
             </div>
           ) : (
             <div className=" flex justify-center">
-              {/* <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 48 48"
-                  >
-                    <path
-                      fill="#EA4335"
-                      d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
-                    />
-                    <path
-                      fill="#4285F4"
-                      d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
-                    />
-                    <path
-                      fill="#FBBC05"
-                      d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
-                    />
-                    <path
-                      fill="#34A853"
-                      d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
-                    />
-                    <path fill="none" d="M0 0h48v48H0z" />
-                  </svg>
-                </span> */}
               <GoogleLogin
-                onSuccess={async credentialResponse => {
-                  await onGoogleLoginSuccess(credentialResponse);
-                  localStorage.setItem('access_token', data);
-                  navigate(URL.HOME);
-                  location.reload();
-                }}
+                onSuccess={loginHandler}
                 onError={() => {
                   console.log('Login Failed');
                 }}
               />
-              {/* <button
-                onClick={() => {
-                  navigate(`http://34.64.191.109:8080/api/google`);
-                }}
-              >
-                login
-              </button> */}
-              {/* <a href="http://34.64.191.109:8080/api/google"> 로그인 </a> */}
-              {/* <span className=" ml-[8px]">구글 계정으로 로그인</span>
-                <GoogleLogin
-                  onSuccess={credentialResponse => {
-                    console.log(credentialResponse);
-                  }}
-                  onError={() => {
-                    console.log('Login Failed');
-                  }}
-                  useOneTap
-                /> */}
-              {/* <button
-                onClick={() => {
-                  googleLogout();
-                  localStorage.removeItem('access_token');
-                  location.reload();
-                }}
-              >
-                Logout
-              </button> */}
             </div>
           )}
         </div>
