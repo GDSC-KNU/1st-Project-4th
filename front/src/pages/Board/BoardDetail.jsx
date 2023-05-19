@@ -1,31 +1,44 @@
 import useSWR from 'swr';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import { URL } from '@/constants/url';
+import { VITE_HOME_URL } from '@/constants/apiUrl';
 
 import Comments from '@/components/Comments';
+import useUser from '@/libs/useUser';
 
 export default function BoardDetail() {
   let { id } = useParams();
+  const { user } = useUser();
   const { data: { data: post } = {}, isLoading } = useSWR(
-    `https://msw.com/api/board/${id}`,
+    `${VITE_HOME_URL}/api/board/${id}`,
   );
 
-  return (
-    <div className=" pt-2 w-full">
-      <div>
-        <div className="mt-2 px-4 text-gray-700">
-          <span className=" inline-flex my-3 items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-            질문
-          </span>
+  console.log(user);
+  // const { data: userData } = useSWR(`${VITE_HOME_URL}/api/user/${id}`);
 
-          <span className=" font-bold ml-2">{post?.title}</span>
+  return (
+    <div className=" w-full pt-2">
+      <div>
+        <div className=" mt-2 flex  justify-between  px-4 text-gray-700">
+          <div>
+            <span className=" my-3 inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+              질문
+            </span>
+            <span className=" ml-2 font-bold">{post?.title}</span>
+          </div>
+          <Link to={'/board/edit/1'} className=" my-auto text-sm text-blue-600">
+            수정하기
+          </Link>
         </div>
-        <div className="mt-2 px-4 text-gray-700 text-sm min-h-[100px]">
+        <div className="mt-2 min-h-[100px] px-4 text-sm text-gray-700">
           {post?.description}
         </div>
-        <div className="flex px-4 space-x-5 mt-3 text-gray-700 py-2.5 border-t border-b-[2px]  w-full">
-          <span className="flex space-x-2 items-center text-sm">
+        <div className="mt-3 flex w-full space-x-5 border-b-[2px] border-t px-4 py-2.5  text-gray-700">
+          <span className="flex items-center space-x-2 text-sm">
             <svg
-              className="w-4 h-4"
+              className="h-4 w-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

@@ -3,15 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import useSWR, { useSWRConfig } from 'swr';
 import { useState, useEffect } from 'react';
 
-
 import useMutation from '@/libs/useMutation';
 
 import Input from '@/components/Input';
 import Button from '@/components/Button';
 import { URL } from '@/constants/url';
-import { VITE_HOME_URL } from '@/constants/apiUrl'
+import { VITE_HOME_URL } from '@/constants/apiUrl';
 
-export default function Post() {
+export default function Edit() {
   const { mutate } = useSWRConfig();
   const navigate = useNavigate();
   const {
@@ -32,7 +31,6 @@ export default function Post() {
   );
 
   const onValid = async data => {
-
     await createPost(data);
     mutate(`${VITE_HOME_URL}/api/boards`);
     navigate(`${URL.BOARDS}`);

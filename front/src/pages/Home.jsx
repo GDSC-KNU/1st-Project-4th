@@ -17,7 +17,7 @@ export default function Home() {
 
         <div className="  row-span-2">
           <div className=" bg-gray-200 h-full">
-            <div className="  h-full mx-20 mt-10 p-3">
+            <div className="  h-full md:mx-20 mt-10 p-3">
               <div className=" p-2 font-bold text-xl mt-6">
                 오늘의 문제 추천
               </div>
