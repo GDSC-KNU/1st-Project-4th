@@ -26,17 +26,12 @@ export const useLogin = () => {
   const loginHandler = async credentialResponse => {
     try {
       const code = await credentialResponse;
-      // console.log(credentialResponse);
       try {
         const userResponse = await onGoogleLoginSuccess(
           { code },
           `?code=${code.clientId}`,
         );
-        console.log(userResponse);
-        // localStorage.setItem('user_token', userResponse);
         setToken(userResponse);
-        // navigate(URL.HOME);
-        // location.reload();
       } catch (error) {
         throw new Error('login failed: server');
       }

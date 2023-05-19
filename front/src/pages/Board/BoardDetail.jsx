@@ -15,7 +15,6 @@ export default function BoardDetail() {
     `${VITE_HOME_URL}/api/board/${id}`,
   );
 
-  console.log(user);
   // const { data: userData } = useSWR(`${VITE_HOME_URL}/api/user/${id}`);
 
   return (

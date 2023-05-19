@@ -302,7 +302,6 @@ export const handlers = [
   // user
   rest.get(`${VITE_HOME_URL}/api/user`, async (req, res, ctx) => {
     const { id } = req.params;
-    console.log(id)
     return res(
       ctx.json(user)
     )
