@@ -5,7 +5,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import { useGoogleOneTapLogin } from '@react-oauth/google';
 import { googleLogout } from '@react-oauth/google';
 
-import { useLogin } from '@/libs/useLogin';
+import { useLogin } from '@/hooks/useLogin';
 import { accessTokenState } from '@/store/userState';
 
 export default function Enter() {
@@ -17,13 +17,13 @@ export default function Enter() {
 
   return (
     <div className="mt-16 px-4">
-      <h3 className="text-3xl font-bold text-center">Enter</h3>
+      <h3 className="text-center text-3xl font-bold">Enter</h3>
       <div className=" mt-12">
         <div className="">
           {isLoggedIn ? (
             <div className=" flex justify-center">
               <button
-                className=" flex justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                className=" flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
                 onClick={() => {}}
               >
                 <span>

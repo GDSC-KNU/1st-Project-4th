@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useSWR, { useSWRConfig } from 'swr';
 import { useState, useEffect } from 'react';
 
-import useMutation from '@/libs/useMutation';
+import useMutation from '@/hooks/useMutation';
 
 import Input from '@/components/Input';
 import Button from '@/components/Button';
@@ -43,7 +43,7 @@ export default function Edit() {
   };
 
   return (
-    <div className=" w-full sm:px-3 px-1 mt-3">
+    <div className=" mt-3 w-full px-1 sm:px-3">
       <form onSubmit={handleSubmit(onValid, onInvalid)}>
         <div className=" mb-12">
           <Input
@@ -61,7 +61,7 @@ export default function Edit() {
             placeholder="해시태그 입력후 엔터를 눌러주세요"
           ></Input>
         </div>
-        <div className=" h-[400px] w-full mb-12">
+        <div className=" mb-12 h-[400px] w-full">
           <Input
             register={register('description')}
             required

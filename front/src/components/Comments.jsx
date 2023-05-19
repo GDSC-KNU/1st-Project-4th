@@ -1,7 +1,7 @@
 import useSWR, { useSWRConfig } from 'swr';
 import Input from '@/components/Input';
 import { useForm } from 'react-hook-form';
-import useMutation from '@/libs/useMutation';
+import useMutation from '@/hooks/useMutation';
 import { useParams } from 'react-router-dom';
 import { URL } from '@/constants/url';
 import { VITE_HOME_URL } from '@/constants/apiUrl';

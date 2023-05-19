@@ -6,7 +6,7 @@ import { URL } from '@/constants/url';
 import { VITE_HOME_URL } from '@/constants/apiUrl';
 
 import Comments from '@/components/Comments';
-import useUser from '@/libs/useUser';
+import useUser from '@/hooks/useUser';
 
 export default function BoardDetail() {
   let { id } = useParams();
