@@ -1,4 +1,6 @@
 import { rest } from "msw";
+import { URL } from '@/constants/url';
+import { VITE_HOME_URL } from "@/constants/apiUrl";
 
 const post = {
   title: 'title1',
@@ -224,26 +226,26 @@ const comments = [
 
 export const handlers = [
 
-  rest.get("https://msw.com/api/serviceUser", async (req, res, ctx) => {
+  rest.get(`${VITE_HOME_URL}/api/serviceUser`, async (req, res, ctx) => {
       return res(
           ctx.json(serviceUser)
         );
     }),
 
-    rest.get("https://msw.com/api/problem", async (req, res, ctx) => {
+    rest.get(`${VITE_HOME_URL}/api/problem`, async (req, res, ctx) => {
       return res(
           ctx.json(problem)
         );
     }),
     
   //board
-  rest.get("https://msw.com/api/board", async (req, res, ctx) => {
+  rest.get(`${VITE_HOME_URL}/api/boards`, async (req, res, ctx) => {
     return res(
       ctx.json(posts_response)
     );
   }),
 
-  rest.post("https://msw.com/api/board", (req, res, ctx) => {
+  rest.post(`${VITE_HOME_URL}/api/board`, (req, res, ctx) => {
     const {title, hashtag, description} = req.body
     // posts_response.push(req.body);
     posts_response.list.push({
@@ -263,7 +265,7 @@ export const handlers = [
   }),
 
   //borad/[id]
-  rest.get("https://msw.com/api/board/:id", async (req, res, ctx) => {
+  rest.get(`${VITE_HOME_URL}/api/board/:id`, async (req, res, ctx) => {
     const { id } = req.params
 
     return res(
@@ -282,7 +284,7 @@ export const handlers = [
   }),
 
   // comment
-  rest.get("https://msw.com/api/comment/:id", async (req, res, ctx) => {
+  rest.get(`${VITE_HOME_URL}/api/comment/:id`, async (req, res, ctx) => {
     const { id } = req.params
     
     return res(
@@ -290,7 +292,7 @@ export const handlers = [
     );
   }),
 
-  rest.post("https://msw.com/api/comment", (req, res, ctx) => {
+  rest.post(`${VITE_HOME_URL}/api/comment`, (req, res, ctx) => {
     let {comment} = req.body
     let new_comment = { id: comments.length + 1, content : comment, user : { id: comments.length + 1, name : "익명"}}
     comments.push(new_comment)
@@ -298,15 +300,14 @@ export const handlers = [
   }),
 
   // user
-  rest.get("https://msw.com/api/user/:id", async (req, res, ctx) => {
+  rest.get(`${VITE_HOME_URL}/api/user`, async (req, res, ctx) => {
     const { id } = req.params;
-    
     return res(
       ctx.json(user)
     )
   }),
 
-  rest.get("https://msw.com/api/users", async (req, res, ctx) => {
+  rest.get(`${VITE_HOME_URL}/api/users`, async (req, res, ctx) => {
     
     return res(
       ctx.json(users)
@@ -314,7 +315,7 @@ export const handlers = [
   }),
 
   // Login
-  rest.post("https://msw.com/api/auth/login", async (req, res, ctx) => {
+  rest.post(`${VITE_HOME_URL}/api/auth/login`, async (req, res, ctx) => {
     return res(
       ctx.json(user)
     )

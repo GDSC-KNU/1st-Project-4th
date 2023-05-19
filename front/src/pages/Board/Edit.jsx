@@ -10,7 +10,7 @@ import Button from '@/components/Button';
 import { URL } from '@/constants/url';
 import { VITE_HOME_URL } from '@/constants/apiUrl';
 
-export default function Post() {
+export default function Edit() {
   const { mutate } = useSWRConfig();
   const navigate = useNavigate();
   const {

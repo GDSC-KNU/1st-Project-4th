@@ -3,13 +3,16 @@ import Pagination from '@/components/Pagination';
 import useSWR from 'swr';
 import { useState } from 'react';
 import { URL } from '@/constants/url';
+import { VITE_HOME_URL } from '@/constants/apiUrl';
 
 export default function Board() {
   const {
     data: { list: posts } = {},
     error,
     isLoading,
-  } = useSWR('https://msw.com/api/board');
+  } = useSWR(`${VITE_HOME_URL}/api/boards`);
+
+
   const [currentpage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
