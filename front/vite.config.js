@@ -4,7 +4,7 @@ import * as path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // base: "/1st-Project-4th/",
+  base: "/1st-Project-4th/",
   plugins: [react()],
   resolve: {
     alias: {

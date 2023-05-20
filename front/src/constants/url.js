@@ -4,15 +4,15 @@ export const URL = {
     // DOMAIN: 'http://gdsc4.duckdns.org:8080',
     // DOMAIN: "http://localhost:5173",
 
-	HOME: '/',
-    BOARDS: '/boards',
-    BOARD_DETAIL: '/board/:id',
-    BOARD_EDIT: '/board/edit/:id',
-    BOARD_POST: '/board',
+	HOME: '/1st-Project-4th/',
+    BOARDS: '/1st-Project-4th/boards',
+    BOARD_DETAIL: '/1st-Project-4th/board/:id',
+    BOARD_EDIT: '/1st-Project-4th/board/edit/:id',
+    BOARD_POST: '/1st-Project-4th/board',
 
-	ENTER: '/enter',
+	ENTER: '/1st-Project-4th/enter',
 
-    MYPAGE: '/profile/:id',
+    MYPAGE: '/1st-Project-4th/profile/:id',
 
     // LOGIN: 'api/auth/login',
 
