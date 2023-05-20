@@ -4,7 +4,7 @@ import React from 'react';
 import DatePickerButton from './datepickerbutton';
 import Pagination from '../../components/Pagination';
 import { URL } from '@/constants/url';
-import { Button } from '../../components/Button';
+
 
 const fetcher = async (url) => {
   const response = await fetch(url);
@@ -53,7 +53,7 @@ export default function Profile() {
 
   const rows = uniquePairs.slice(0, numCols).map((pair, i) => (
     <li
-      key={`${pair.name}-${pair.url}`} // 유일한 키를 할당합니다.
+      key={`${pair.name}-${pair.url}-${i}`} // 유일한 키를 할당합니다.
       className="px-4 py-2 border-b border-gray-200 transition-colors duration-300 hover:bg-gray-100"
     >
       <a href={pair.url} target="_blank" rel="noopener noreferrer">{pair.name}</a>
@@ -148,7 +148,7 @@ export default function Profile() {
         </div>
 
         <div className="flex justify-end">
-        <Button />
+     
         </div>
       </div>
     </>
