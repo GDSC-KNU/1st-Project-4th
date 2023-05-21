@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import {
+  useRecoilState,
+} from 'recoil';
 
-import { getUserIsLoggedIn } from '../store/userState';
+import { accessTokenState } from '@/store/userState';
 
-import { URL } from '../constants/url';
+import { URL } from '@/constants/url';
+
 
 const Nav = () => {
-  const isLoggedIn = useRecoilValue(getUserIsLoggedIn);
+  // const isLoggedIn = useRecoilValue(accessTokenState);
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(accessTokenState);
 
   return (
     <header className=" fixed top-0 z-20 h-12 w-full bg-white  py-2 shadow-md">
@@ -19,10 +23,10 @@ const Nav = () => {
           </li>
           <div className=" hidden md:flex">
             <li className="">
-              <Link to={URL.BOARD}>자유 게시판</Link>
+              <Link to={URL.BOARDS}>자유 게시판</Link>
             </li>
             <li className=" ml-4">
-              <Link to={URL.BOARD}>토론 게시판</Link>
+              <Link to={URL.BOARDS}>토론 게시판</Link>
             </li>
             {isLoggedIn ? (
               <li className=" ml-4">
@@ -37,7 +41,7 @@ const Nav = () => {
           {'user !== admin' ? null : <li className=" mr-3">Admin</li>}
           {isLoggedIn ? (
             <li className=" mr-3 flex min-w-[26px] cursor-pointer items-center p-0">
-              <a className=" flex items-center rounded-full" href={URL.MYPAGE}>
+              <Link className=" flex items-center rounded-full" to={URL.MYPAGE}>
                 {/* <Image
                   className=" rounded-full"
                   src={nextSession?.user?.image ?? ''}
@@ -46,12 +50,20 @@ const Nav = () => {
                   alt={nextSession?.user?.id ?? ''}
                 ></Image> */}
                 <div>Icon</div>
-              </a>
+              </Link>
             </li>
           ) : null}
           {isLoggedIn ? (
             <li>
-              <Link to={URL.MYPAGE}>마이 페이지</Link>
+              <a
+                className=" cursor-pointer"
+                onClick={() => {
+                  // localStorage.removeItem('user_token');
+                  setIsLoggedIn(null)
+                }}
+              >
+                로그아웃
+              </a>
             </li>
           ) : (
             <Link className="min-w-[30px]" to={URL.ENTER}>
@@ -62,10 +74,10 @@ const Nav = () => {
       </nav>
       <div className=" flex list-none space-x-6 whitespace-nowrap bg-white px-3 py-2 shadow-md md:hidden">
         <li className="">
-          <Link to={URL.BOARD}>자유 게시판</Link>
+          <Link to={URL.BOARDS}>자유 게시판</Link>
         </li>
         <li className=" ml-4">
-          <Link to={URL.BOARD}>토론 게시판</Link>
+          <Link to={URL.BOARDS}>토론 게시판</Link>
         </li>
         {isLoggedIn ? (
           <li className=" ml-4">

@@ -7,18 +7,24 @@ export default function useMutation(url) {
     data: undefined,
     error: undefined,
   });
-  async function mutation(data) {
+  async function mutation(data, params) {
     setState(prev => ({ ...prev, loading: true }));
-
+    // console.log(url)
     try {
+      //for useLogin
+      if(params) url = url + params;
+    
+
       const response = await axios.post(url, data, {
         headers: {
           'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
         },
       });
 
+   
       const responseData = response.data;
-      setState(prev => ({ ...prev, data: responseData }));
+      setState(prev => ({ ...prev, data: responseData, error: null }));
       return responseData;
     } catch (error) {
       setState(prev => ({ ...prev, error: error }));

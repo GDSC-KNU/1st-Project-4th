@@ -1,15 +1,20 @@
-import { Link } from 'react-router-dom';
-import Pagination from '../../components/Pagination';
+import { Link, useNavigate } from 'react-router-dom';
+import Pagination from '@/components/Pagination';
 import useSWR from 'swr';
 import { useState } from 'react';
+import { URL } from '@/constants/url';
+import { VITE_HOME_URL } from '@/constants/apiUrl';
 
 export default function Board() {
   const {
     data: { list: posts } = {},
     error,
     isLoading,
-  } = useSWR('https://msw.com/api/board');
+  } = useSWR(`${VITE_HOME_URL}/api/boards`);
+
+
   const [currentpage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   const onPageChangeHandler = pageNumber => {
     setCurrentPage(pageNumber);
@@ -18,7 +23,7 @@ export default function Board() {
   // console.log(posts);
 
   return (
-    <div className="  min-w-[300px] w-full pt-6 px-3">
+    <div className="  min-w-[300px] w-full px-3">
       {/* <div className=" flex">
         <div className=" p-2 border-[1px] border-solid cursor-pointer">
           질문 게시판
@@ -92,7 +97,10 @@ export default function Board() {
             </li>
           </ol>
         </div>
-        <div className=" border-[1px] border-solid p-2 cursor-pointer">
+        <div
+          onClick={() => navigate(URL.BOARD_POST)}
+          className=" border-[1px] border-solid p-2 cursor-pointer"
+        >
           글쓰기
         </div>
       </div>
@@ -105,7 +113,6 @@ export default function Board() {
           onChange={onPageChangeHandler}
         />
       </div>
-      
     </div>
   );
 }

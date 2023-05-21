@@ -13,10 +13,43 @@ const fetcher = async (url) => {
 };
 
 export default function Profile() {
-  const [selectedValue, setSelectedValue] = React.useState('1');
 
-  const { data: serviceUserData } = useSWR('https://msw.com/api/serviceUser', fetcher);
-  const { data: problemData } = useSWR('https://msw.com/api/problem', fetcher);
+  // const params = useParams();
+  // console.log(params);
+
+
+  const [selectedValue, setSelectedValue] = useState('1');
+  const [data, setData] = useState(null);
+  const [problem, setProblem] = useState(null);
+
+  
+
+  useEffect(() => {
+
+    async function fetchData() {
+      try {
+        const response = await fetch('https://msw.com/api/serviceUser');
+        const jsonData = await response.json();
+        setData(jsonData); // update the state with the received data
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchProblem() {
+      try {
+        const response = await fetch('https://msw.com/api/problem');
+        const jsonData = await response.json();
+        setProblem(jsonData); // update the state with the received data
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchProblem();
+  }, []);
 
   const items = [
     { value: '3', label: '3' },
@@ -25,7 +58,7 @@ export default function Profile() {
     { value: '10', label: '10' },
   ];
 
-  const filteredItems = items.filter((item) => item.value !== selectedValue);
+  const filteredItems = items.filter(item => item.value !== selectedValue);
 
   let numCols = 0;
   if (selectedValue === '3') {
