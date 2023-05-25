@@ -63,6 +63,7 @@ export default function Enter() {
                   console.log('Login Failed');
                 }}
               />
+              <button onClick={loginHandler}>로그인</button>
             </div>
           )}
         </div>

@@ -8,6 +8,7 @@ import { accessTokenState } from '@/store/userState';
 import useMutation from '@/hooks/useMutation';
 import { URL } from '@/constants/url';
 import { VITE_HOME_URL } from '@/constants/apiUrl';
+import axios from 'axios';
 
 export const useTempLogin = () => {
   const navigate = useNavigate();
@@ -28,9 +29,12 @@ export const useTempLogin = () => {
       const userResponse = await axios.get(`${VITE_HOME_URL}/api/google`);
 
       // const { accessToken, refreshToken } = userResponse;
-
+      //   console.log(userResponse);
+      //   navigate(userResponse.data);
+      window.location.href = userResponse.data;
+      //   location.href(userResponse.data);
       // accessToken accessTokenState에 저장 및 atomEffect로 localstorag에 저장
-      setToken(userResponse);
+      //   setToken(userResponse);
       // refresh token cookie에 저장.
       // Cookies.set('refreshToken', refreshToken, { httpOnly: true });
     } catch (error) {

@@ -28,8 +28,9 @@ export const useLogin = () => {
           `?code=${code.clientId}`,
         );
 
-        // const { accessToken, refreshToken } = userResponse;
+        console.log(userResponse);
 
+        // const { accessToken, refreshToken } = userResponse;
         // accessToken accessTokenState에 저장 및 atomEffect로 localstorag에 저장
         setToken(userResponse);
         // refresh token cookie에 저장.

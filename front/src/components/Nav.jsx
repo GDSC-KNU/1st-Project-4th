@@ -34,8 +34,8 @@ const Nav = () => {
         </ul>
 
         <ul className=" mr-2 flex items-center whitespace-nowrap">
-          <div className=" mr-2">searchModal</div>
-          {'user !== admin' ? null : <li className=" mr-3">Admin</li>}
+          {/* <div className=" mr-2">searchModal</div> */}
+          {/* {'user !== admin' ? null : <li className=" mr-3">Admin</li>} */}
           {isLoggedIn ? (
             <li className=" mr-3 flex min-w-[26px] cursor-pointer items-center p-0">
               <Link className=" flex items-center rounded-full" to={URL.MYPAGE}>
