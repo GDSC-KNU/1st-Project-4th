@@ -19,6 +19,7 @@ export default function Enter() {
     <div className="mt-16 px-4">
       <h3 className="text-center text-3xl font-bold">Enter</h3>
       <div className=" mt-12">
+
         <div className="">
           {isLoggedIn ? (
             <div className=" flex justify-center">
@@ -26,6 +27,18 @@ export default function Enter() {
                 className=" flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
                 onClick={() => {}}
               >
+
+            <div className="grid grid-cols-3 gap-4">
+              <ul className="col-span-2">
+                <li className="bg-gray-100 p-4 mb-4">Item 1</li>
+                <li className="bg-gray-100 p-4 mb-4">Item 2</li>
+                <li className="bg-gray-100 p-4 mb-4">Item 3</li>
+                <li className="bg-gray-100 p-4 mb-4">Item 4</li>
+                <li className="bg-gray-100 p-4 mb-4">Item 5</li>
+                <li className="bg-gray-100 p-4 mb-4">Item 6</li>
+              </ul>
+            </div>
+
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

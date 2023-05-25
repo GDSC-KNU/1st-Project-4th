@@ -11,12 +11,7 @@ const DatePickerButton = () => {
 
   // Example data to filter
   const data = [
-    { id: 1, date: "2022-01-01" },
-    { id: 2, date: "2022-01-02" },
-    { id: 3, date: "2022-01-03" },
-    { id: 4, date: "2022-01-04" },
-    { id: 5, date: "2022-01-05" },
-    { id: 6, date: "2022-01-06" },
+
   ];
 
   // Filter data within the specified date range
@@ -44,12 +39,6 @@ const DatePickerButton = () => {
         onChange={handleValueChange}
         showShortcuts={true}
       />
-      {/* Render the filtered data */}
-      <ul>
-        {filteredData.map((item) => (
-          <li key={item.id}>{item.date}</li>
-        ))}
-      </ul>
     </div>
   );
 };
