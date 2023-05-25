@@ -4,7 +4,7 @@ export default function Home() {
     { id: 2, name: '알고리즘 문제2', level: 1 },
     { id: 3, name: '알고리즘 문제3', level: 2 },
     { id: 4, name: '알고리즘 문제4', level: 3 },
-    { id: 5, name: '알고리즘 문제5', level: 2 },
+    { id: 5, name: '알고리즘 문제5', level: 5 },
   ];
   // const data = fetch('')
 
