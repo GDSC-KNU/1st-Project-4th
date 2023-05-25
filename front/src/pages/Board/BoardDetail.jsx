@@ -27,7 +27,10 @@ export default function BoardDetail() {
             </span>
             <span className=" ml-2 font-bold">{post?.title}</span>
           </div>
-          <Link to={'/board/edit/1'} className=" my-auto text-sm text-blue-600">
+          <Link
+            to={`${URL.HOME}board/edit/${id}`}
+            className=" my-auto text-sm text-blue-600"
+          >
             수정하기
           </Link>
         </div>

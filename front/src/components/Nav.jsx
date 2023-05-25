@@ -1,12 +1,9 @@
 import { Link } from 'react-router-dom';
-import {
-  useRecoilState,
-} from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { accessTokenState } from '@/store/userState';
 
 import { URL } from '@/constants/url';
-
 
 const Nav = () => {
   // const isLoggedIn = useRecoilValue(accessTokenState);
@@ -17,16 +14,16 @@ const Nav = () => {
       <nav className="flex w-full items-center justify-between">
         <ul className=" ml-2 flex items-center space-x-2 whitespace-nowrap uppercase">
           <li className=" cursor-pointer ">
-            <Link className=" font-mono font-bold text-xl ml-1" to={URL.HOME}>
+            <Link className=" ml-1 font-mono text-xl font-bold" to={URL.HOME}>
               ALgoHelper
             </Link>
           </li>
           <div className=" hidden md:flex">
             <li className="">
-              <Link to={URL.BOARDS}>자유 게시판</Link>
+              <Link to={`${URL.BOARDS_DISCUSS}`}>자유 게시판</Link>
             </li>
             <li className=" ml-4">
-              <Link to={URL.BOARDS}>토론 게시판</Link>
+              <Link to={URL.BOARDS_QUESTION}>질문 게시판</Link>
             </li>
             {isLoggedIn ? (
               <li className=" ml-4">
@@ -36,7 +33,7 @@ const Nav = () => {
           </div>
         </ul>
 
-        <ul className=" flex items-center whitespace-nowrap mr-2">
+        <ul className=" mr-2 flex items-center whitespace-nowrap">
           <div className=" mr-2">searchModal</div>
           {'user !== admin' ? null : <li className=" mr-3">Admin</li>}
           {isLoggedIn ? (
@@ -58,8 +55,7 @@ const Nav = () => {
               <a
                 className=" cursor-pointer"
                 onClick={() => {
-                  // localStorage.removeItem('user_token');
-                  setIsLoggedIn(null)
+                  setIsLoggedIn(null);
                 }}
               >
                 로그아웃
@@ -74,10 +70,10 @@ const Nav = () => {
       </nav>
       <div className=" flex list-none space-x-6 whitespace-nowrap bg-white px-3 py-2 shadow-md md:hidden">
         <li className="">
-          <Link to={URL.BOARDS}>자유 게시판</Link>
+          <Link to={URL.BOARDS_DISCUSS}>자유 게시판</Link>
         </li>
         <li className=" ml-4">
-          <Link to={URL.BOARDS}>토론 게시판</Link>
+          <Link to={URL.BOARDS_QUESTION}>질문 게시판</Link>
         </li>
         {isLoggedIn ? (
           <li className=" ml-4">

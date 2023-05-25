@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
+import { URL } from '@/constants/url';
 
 const PublicRouter = ({ isAuthenticated }) => {
   useEffect(() => {
@@ -8,7 +9,7 @@ const PublicRouter = ({ isAuthenticated }) => {
     }
   }, []);
 
-  return isAuthenticated ? <Navigate to="/" replace /> : <Outlet />;
+  return isAuthenticated ? <Navigate to={URL.HOME} replace /> : <Outlet />;
 };
 
 export default PublicRouter;

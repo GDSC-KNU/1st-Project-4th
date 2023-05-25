@@ -1,13 +1,7 @@
 import { useEffect } from 'react';
 import useSWR from 'swr';
 import { useNavigate } from 'react-router-dom';
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { accessTokenState } from '@/store/userState';
 import useMutation from '@/hooks/useMutation';
@@ -31,7 +25,9 @@ export const useLogin = () => {
           { code },
           `?code=${code.clientId}`,
         );
+
         setToken(userResponse);
+        console.log(token);
       } catch (error) {
         throw new Error('login failed: server');
       }

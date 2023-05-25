@@ -57,82 +57,153 @@ const posts_response = {
   "msg": "성공하였습니다.",
   "list" : [
     {
-      "title": "Dummy Title 1",
-      "id": 2,
-      "description": "Hello, I have a question about programming",
-      "created_date": "2023-04-20",
-      "modified_date": "2023-04-21",
-      "view_count": 8,
-      "user": {
-        "id": "id-2",
-        "level": "2",
-        "problem_count": 5
+      "title": "heemin babo",
+      "description": "hello",
+      "view_count": 0,
+      "userResponse": {
+          "mail": "blue",
+          "level": "DIAMOND",
+          "problem_count": 0,
+          "problem_current": 0
       },
-      "comment_count": 2,
-      "status": "answered"
+      "created_date": "2023-05-23",
+      "modified_date": null,
+      "status": "DISCUSS"
+  },
+  {
+      "title": "heemin babo",
+      "description": "hello",
+      "view_count": 0,
+      "userResponse": {
+          "mail": "blue",
+          "level": "DIAMOND",
+          "problem_count": 0,
+          "problem_current": 0
+      },
+      "created_date": "2023-05-23",
+      "modified_date": null,
+      "status": "DISCUSS"
+  },
+  {
+      "title": "heemin babo",
+      "description": "hello",
+      "view_count": 0,
+      "userResponse": {
+          "mail": "blue",
+          "level": "DIAMOND",
+          "problem_count": 0,
+          "problem_current": 0
+      },
+      "created_date": "2023-05-23",
+      "modified_date": null,
+      "status": "DISCUSS"
+  },
+  {
+      "title": "heemin babo",
+      "description": "hello",
+      "view_count": 0,
+      "userResponse": {
+          "mail": "blue",
+          "level": "DIAMOND",
+          "problem_count": 0,
+          "problem_current": 0
+      },
+      "created_date": "2023-05-23",
+      "modified_date": null,
+      "status": "DISCUSS"
+  },
+  {
+      "title": "heemin babo",
+      "description": "hello",
+      "view_count": 0,
+      "userResponse": {
+          "mail": "blue",
+          "level": "DIAMOND",
+          "problem_count": 0,
+          "problem_current": 0
+      },
+      "created_date": "2023-05-23",
+      "modified_date": null,
+      "status": "QUESTION"
+  },
+  {
+    "title": "heemin babo",
+    "description": "hello",
+    "view_count": 0,
+    "userResponse": {
+        "mail": "blue",
+        "level": "DIAMOND",
+        "problem_count": 0,
+        "problem_current": 0
     },
-    {
-      "title": "Dummy Title 2",
-      "id": 3,
-      "description": "Need help with a coding challenge",
-      "created_date": "2023-03-15",
-      "modified_date": "2023-03-16",
-      "view_count": 5,
-      "user": {
-        "id": "id-3",
-        "level": "3",
-        "problem_count": 15
-      },
-      "comment_count": 4,
-      "status": "answered"
-    },
-    {
-      "title": "Dummy Title 3",
-      "id": 4,
-      "description": "Looking for suggestions on optimizing an algorithm",
-      "created_date": "2023-02-10",
-      "modified_date": "2023-02-11",
-      "view_count": 10,
-      "user": {
-        "id": "id-4",
-        "level": "2",
-        "problem_count": 8
-      },
-      "comment_count": 1,
-      "status": "unanswered"
-    },
-    {
-      "title": "Dummy Title 4",
-      "id": 5,
-      "description": "Seeking guidance on data structures",
-      "created_date": "2023-01-05",
-      "modified_date": "2023-01-06",
-      "view_count": 15,
-      "user": {
-        "id": "id-5",
-        "level": "4",
-        "problem_count": 20
-      },
-      "comment_count": 3,
-      "status": "unanswered"
-    },
-    {
-      "title": "Dummy Title 5",
-      "id": 6,
-      "description": "Having issues with recursion, need advice",
-      "created_date": "2022-12-01",
-      "modified_date": "2022-12-02",
-      "view_count": 7,
-      "user": {
-        "id": "id-6",
-        "level": "2",
-        "problem_count": 12
-      },
-      "comment_count": 0,
-      "status": null
-    }
+    "created_date": "2023-05-23",
+    "modified_date": null,
+    "status": "QUESTION"
+},
+{
+  "title": "heemin babo",
+  "description": "hello",
+  "view_count": 0,
+  "userResponse": {
+      "mail": "blue",
+      "level": "DIAMOND",
+      "problem_count": 0,
+      "problem_current": 0
+  },
+  "created_date": "2023-05-23",
+  "modified_date": null,
+  "status": "QUESTION"
+},  {
+  "title": "heemin babo",
+  "description": "hello",
+  "view_count": 0,
+  "userResponse": {
+      "mail": "blue",
+      "level": "DIAMOND",
+      "problem_count": 0,
+      "problem_current": 0
+  },
+  "created_date": "2023-05-23",
+  "modified_date": null,
+  "status": "QUESTION"
+}
+  
+//   {
+//     "title": "heemin babo",
+//       "id": 6,
+//     "description": "hello",
+//     "view_count": 0,
+//     "userResponse": {
+//         "id": "id-6",
+//         "name": "name1",
+//         "mail": "blue",
+//         "level": "DIAMOND",
+//         "problem_count": 0,
+//         "problem_current": 0
+//     },
+//     "created_date": "2023-05-23",
+//     "modified_date": null,
+//     "status": "QUESTION",
+//     "comment_count": 0,
+// }
+    // {
+    //   "title": "Dummy Title 5",
+    //   "id": 6,
+    //   "description": "Having issues with recursion, need advice",
+    //   "created_date": "2022-12-01",
+    //   "modified_date": "2022-12-02",
+    //   "view_count": 7,
+    //   "user": {
+    //     "id": "id-6",
+    //     "level": "2",
+    //     "problem_count": 12
+    //   },
+    //   "comment_count": 0,
+    //   "status": "QUESTION"
+    // }
   ]
 }
+
 
 const serviceUser = [  {
   serviceUser_id : 1,
@@ -239,7 +310,19 @@ export const handlers = [
     }),
     
   //board
-  rest.get(`${VITE_HOME_URL}/api/boards`, async (req, res, ctx) => {
+  rest.get(`${VITE_HOME_URL}/api/boards?category=all?page=1`, async (req, res, ctx) => {
+    return res(
+      ctx.json(posts_response)
+    );
+  }),
+
+  rest.get(`${VITE_HOME_URL}/api/boards?category=discuss?page=1`, async (req, res, ctx) => {
+    return res(
+      ctx.json(posts_response)
+    );
+  }),
+
+  rest.get(`${VITE_HOME_URL}/api/boards?category=question?page=1`, async (req, res, ctx) => {
     return res(
       ctx.json(posts_response)
     );
