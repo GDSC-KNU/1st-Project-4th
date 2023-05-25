@@ -19,11 +19,10 @@ import { URL } from '@/constants/url';
 
 function App() {
   const isLoggedIn = useRecoilValue(accessTokenState);
-
   return (
     <div>
       <Nav />
-      <div className="w-full max-w-[950px] flex flex-col items-center md:mt-[48px] mt-[68px]  mx-auto">
+      <div className="mx-auto mt-[68px] flex w-full max-w-[950px] flex-col items-center  md:mt-[48px]">
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route element={<PrivateRouter isAuthenticated={isLoggedIn} />}>
@@ -36,6 +35,8 @@ function App() {
             </Route>
             <Route path={URL.HOME} element={<Home />}></Route>
             <Route path={URL.BOARDS} element={<Board />}></Route>
+            {/* <Route path={URL.BOARDS_DISCUSS} element={<Board />}></Route> */}
+            {/* <Route path={URL.BOARDS_QUESTION} element={<Board />}></Route> */}
             <Route path={URL.BOARD_DETAIL} element={<BoardDetail />}></Route>
           </Routes>
         </Suspense>

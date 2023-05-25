@@ -1,39 +1,36 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Pagination from '@/components/Pagination';
 import useSWR from 'swr';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { URL } from '@/constants/url';
 import { VITE_HOME_URL } from '@/constants/apiUrl';
 
 export default function Board() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const queryParams = new URLSearchParams(window.location.search);
+  const category = queryParams.get('category');
   const {
     data: { list: posts } = {},
     error,
     isLoading,
-  } = useSWR(`${VITE_HOME_URL}/api/boards`);
+  } = useSWR(
+    `${VITE_HOME_URL}/api/boards?category=${category}&page=${currentPage}`,
+  );
 
-
-  const [currentpage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
   const onPageChangeHandler = pageNumber => {
     setCurrentPage(pageNumber);
   };
 
-  // console.log(posts);
+  useEffect(() => {
+    const newUrl = `${window.location.pathname}?category=${category}&page=${currentPage}`;
+    window.history.pushState(null, '', newUrl);
+  }, [category, currentPage]);
 
   return (
-    <div className="  min-w-[300px] w-full px-3">
-      {/* <div className=" flex">
-        <div className=" p-2 border-[1px] border-solid cursor-pointer">
-          질문 게시판
-        </div>
-        <div className=" p-2 border-[1px] border-solid cursor-pointer">
-          자유 게시판
-        </div>
-      </div> */}
-      {/* <div className=" border-[1px] mb-4 relative bottom-[1px]"></div> */}
-      <div className=" space-y-2 mb-8 mt-4">
+    <div className="  w-full min-w-[300px] px-3">
+      <div className=" mb-8 mt-4 space-y-2">
         {posts &&
           posts.map(
             (
@@ -45,35 +42,40 @@ export default function Board() {
                 view_count,
                 comment_count,
                 id,
+                status,
               },
               i,
             ) => (
-              <div key={id} className=" flex flex-col items-start">
-                <span className=" mb-1 flex items-center px-2.5  rounded-full text-xs font-medium bg-gray-100 text-gray-800 ">
-                  질문
+              <div key={id || i} className=" flex flex-col items-start">
+                <span className=" mb-1 flex items-center rounded-full  bg-gray-100 px-2.5 text-xs font-medium text-gray-800 ">
+                  {status === 'DISCUSS' ? '토론' : '질문'}
                 </span>
                 <div className="  text-gray-700">
-                  <Link className=" cursor-pointer" key={id} to={`/board/${i}`}>
-                    <span className=" text-blue-500 font-bold hover:underline">
+                  <Link
+                    className=" cursor-pointer"
+                    key={id}
+                    to={`${URL.HOME}board/${i}`}
+                  >
+                    <span className=" font-bold text-blue-500 hover:underline">
                       {title}
                     </span>
                   </Link>
                   <span className=" text-sm">{' ' + `[${comment_count}]`}</span>
                 </div>
-                <div className="  text-gray-700 text-sm">
+                <div className="  text-sm text-gray-700">
                   <span className=" "></span>
                   {description?.slice(0, 50) + '...'}
                 </div>
                 <div
                   className={
                     posts && i === posts?.length - 1
-                      ? ' flex items-center justify-between w-full text-gray-500 font-medium text-xs'
-                      : ' flex items-center justify-between w-full text-gray-500 font-medium text-xs border-b-[1px] border-gray-200 pb-[2px]'
+                      ? ' flex w-full items-center justify-between text-xs font-medium text-gray-500'
+                      : ' flex w-full items-center justify-between border-b-[1px] border-gray-200 pb-[2px] text-xs font-medium text-gray-500'
                   }
                 >
                   <span>User</span>
                   <div>
-                    <span>{modified_date}</span>
+                    <span>{modified_date || created_date}</span>
                     <span> | </span>
                     <span>조회 {view_count}</span>
                   </div>
@@ -99,16 +101,15 @@ export default function Board() {
         </div>
         <div
           onClick={() => navigate(URL.BOARD_POST)}
-          className=" border-[1px] border-solid p-2 cursor-pointer"
+          className=" cursor-pointer border-[1px] border-solid p-2"
         >
           글쓰기
         </div>
       </div>
       <div className=" pt-10">
         <Pagination
-          currentPage={currentpage}
+          currentPage={currentPage}
           itemsCountPerpage={10}
-          ro
           pageRangeDisplayed={5}
           onChange={onPageChangeHandler}
         />

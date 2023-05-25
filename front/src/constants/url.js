@@ -6,6 +6,8 @@ export const URL = {
 
 	HOME: '/1st-Project-4th/',
     BOARDS: '/1st-Project-4th/boards',
+    BOARDS_DISCUSS: '/1st-Project-4th/boards?category=discuss',
+    BOARDS_QUESTION: '/1st-Project-4th/boards?category=question',
     BOARD_DETAIL: '/1st-Project-4th/board/:id',
     BOARD_EDIT: '/1st-Project-4th/board/edit/:id',
     BOARD_POST: '/1st-Project-4th/board',

@@ -60,6 +60,29 @@ export default function Post() {
             kind="normal"
             placeholder="해시태그 입력후 엔터를 눌러주세요"
           ></Input>
+          <div className=" relative flex h-full w-full  items-center rounded-md align-top shadow-sm">
+            {/* <textarea
+              id={name}
+              required={required}
+              {...register}
+              type={type}
+              placeholder={placeholder}
+              className=" h-full w-full appearance-none rounded-md border border-gray-300 px-3 py-2 shadow-sm placeholder:text-gray-400 focus:border-blue-400 focus:outline-none focus:ring-blue-400"
+            /> */}
+            <label
+              htmlFor="default"
+              className=" sr-only mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Default select
+            </label>
+            <select
+              id="default"
+              className="mb-6 block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            >
+              <option value="질문">질문</option>
+              <option value="토론">토론</option>
+            </select>
+          </div>
         </div>
         <div className=" mb-12 h-[400px] w-full">
           <Input

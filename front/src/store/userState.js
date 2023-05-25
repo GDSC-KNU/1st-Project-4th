@@ -15,9 +15,9 @@ const localStorageEffect = key => ({setSelf, onSet}) => {
 
 export const accessTokenState = atom({
     key: 'accessTokenState',
-    default: localStorage.getItem('access_token') || null,
-    effect: [
-        localStorageEffect
+    default: localStorage.getItem('accessTokenState') || null,
+    effects: [
+        localStorageEffect('accessTokenState')
     ]
 });
 
