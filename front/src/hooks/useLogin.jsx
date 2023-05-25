@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import useSWR from 'swr';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import Cookies from 'js-cookie';
 
 import { accessTokenState } from '@/store/userState';
 import useMutation from '@/hooks/useMutation';
@@ -14,6 +15,7 @@ export const useLogin = () => {
   const [token, setToken] = useRecoilState(accessTokenState);
 
   const [onGoogleLoginSuccess, { loading, data, error }] = useMutation(
+    // `${VITE_HOME_URL}/api/auth/login`,
     `${VITE_HOME_URL}/api/auth/login`,
   );
 
@@ -26,16 +28,23 @@ export const useLogin = () => {
           `?code=${code.clientId}`,
         );
 
+        // const { accessToken, refreshToken } = userResponse;
+
+        // accessToken accessTokenState에 저장 및 atomEffect로 localstorag에 저장
         setToken(userResponse);
-        console.log(token);
+        // refresh token cookie에 저장.
+        // Cookies.set('refreshToken', refreshToken, { httpOnly: true });
       } catch (error) {
-        throw new Error('login failed: server');
+        console.log(error);
+        throw new Error('login failed: onGoogleLoginSuccess');
       }
     } catch (error) {
+      console.log(error);
       throw new Error('login failed: server');
       // handle your error here
     } finally {
     }
   };
+
   return loginHandler;
 };

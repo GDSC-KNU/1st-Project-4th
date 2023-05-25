@@ -22,6 +22,8 @@ export default function Post() {
     formState: { errors },
   } = useForm({ mode: 'onChange' });
 
+  //  console.log(watch());
+
   // const { data: postsResponse, isLoading } = useSWR(
   //   `${URL.DOMAIN}${URL.BOARDS}`,
   // );
@@ -33,7 +35,7 @@ export default function Post() {
   const onValid = async data => {
     await createPost(data);
     mutate(`${VITE_HOME_URL}/api/boards`);
-    navigate(`${URL.BOARDS}`);
+    navigate(`${URL.BOARDS_DISCUSS}`);
 
     return;
   };

@@ -5,13 +5,13 @@ import { GoogleLogin } from '@react-oauth/google';
 import { useGoogleOneTapLogin } from '@react-oauth/google';
 import { googleLogout } from '@react-oauth/google';
 
-import { useLogin } from '@/hooks/useLogin';
+import { useTempLogin } from '@/hooks/useTempLogin';
 import { accessTokenState } from '@/store/userState';
 
 export default function Enter() {
   const navigate = useNavigate();
 
-  const loginHandler = useLogin();
+  const loginHandler = useTempLogin();
 
   const isLoggedIn = useRecoilValue(accessTokenState);
 

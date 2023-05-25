@@ -12,17 +12,15 @@ export default function useMutation(url) {
     // console.log(url)
     try {
       //for useLogin
-      if(params) url = url + params;
-    
+      if (params) url = url + params;
 
       const response = await axios.post(url, data, {
         headers: {
           'Content-Type': 'application/json',
-          "Access-Control-Allow-Origin": "*",
+          'Access-Control-Allow-Origin': '*',
         },
       });
 
-   
       const responseData = response.data;
       setState(prev => ({ ...prev, data: responseData, error: null }));
       return responseData;

@@ -16,7 +16,7 @@ export default function BoardDetail() {
   );
 
   // const { data: userData } = useSWR(`${VITE_HOME_URL}/api/user/${id}`);
-
+  console.log(post);
   return (
     <div className=" w-full pt-2">
       <div>

@@ -9,12 +9,13 @@ export default function Board() {
   const [currentPage, setCurrentPage] = useState(1);
   const queryParams = new URLSearchParams(window.location.search);
   const category = queryParams.get('category');
+  // console.log(category);
   const {
     data: { list: posts } = {},
     error,
     isLoading,
   } = useSWR(
-    `${VITE_HOME_URL}/api/boards?category=${category}&page=${currentPage}`,
+    `${VITE_HOME_URL}/api/boards?category=${category}&page=${currentPage - 1}`,
   );
 
   const navigate = useNavigate();
